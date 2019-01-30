@@ -1,0 +1,40 @@
+<%= form_with scope: :user, url: users_path, local: true do |form| %>
+  <p>
+    <%= form.label "Username*" %><br>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <%= form.label "Password*" %><br>
+    <%= form.password_field :password %>
+  </p>
+
+  <p>
+    <%= form.label "Password confirmation*" %><br>
+    <%= form.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= form.label "Last name*" %><br>
+    <%= form.password_field :lastname %>
+  </p>
+
+  <p>
+    <%= form.label "First name*" %><br>
+    <%= form.password_field :firstname %>
+  </p>
+
+  <p>
+    <%= form.label "Middle initial" %><br>
+    <%= form.password_field :mi %>
+  </p>
+
+  <p>
+    <%= form.label "Present Address*" %><br>
+    <%= form.password_field :address %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
