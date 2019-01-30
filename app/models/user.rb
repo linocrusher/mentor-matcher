@@ -6,4 +6,8 @@ class User < ApplicationRecord
 	validates :firstname, presence: true
 	validates :address, presence: true
 
+	def encrypt_password
+		self.salt = BCrypt::Engine.generate_salt
+		self.password = BCrypt::Engine.hash_secret(password, salt)
+	end
 end
