@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :save_login_state, :only => [:show, :new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
+  
   def show
 	@user = User.find(params[:id]) #save the user instance inside @user
   end

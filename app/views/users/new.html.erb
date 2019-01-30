@@ -1,5 +1,7 @@
 <%= form_with scope: :user, url: users_path, local: true do |form| %>
 
+<h1>Sign up</h1>
+
   <!Error printing>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -12,37 +14,37 @@
   <% end %>
 
   <p>
-    <%= form.label "Username*" %><br>
+    Username* <br>
     <%= form.text_field :username %>
   </p>
 
   <p>
-    <%= form.label "Password*" %><br>
+    Password* <br>
     <%= form.password_field :password %>
   </p>
 
   <p>
-    <%= form.label "Password confirmation*" %><br>
+    Password confirmation* <br>
     <%= form.password_field :password_confirmation %>
   </p>
 
   <p>
-    <%= form.label "Last name*" %><br>
+    Last name* <br>
     <%= form.text_field :lastname %>
   </p>
 
   <p>
-    <%= form.label "First name*" %><br>
+    First name* <br>
     <%= form.text_field :firstname %>
   </p>
 
   <p>
-    <%= form.label "Middle initial" %><br>
+    Middle initial <br>
     <%= form.text_field :mi %>
   </p>
 
   <p>
-    <%= form.label "Present Address*" %><br>
+    Present Address* <br>
     <%= form.text_area :address %>
   </p>
 

@@ -1,0 +1,16 @@
+<h1>Log in</h1>
+<%= form_tag(:action => 'login_attempt') do %>    
+    <p>
+    	Username <br>
+    	<%= text_field_tag(:username) %>
+    </p>
+
+    <p>
+    	Password <br> 
+    	<%= password_field_tag :password %>
+	</p> 
+
+    <%= submit_tag("Log In") %>
+<% end %>
+
+<%= link_to 'Back to homepage', home_index_path %> 
