@@ -3,3 +3,5 @@
 <%= form_tag(:action => 'logout') do %>
 	 <%= submit_tag("Log Out") %>
 <% end %> 
+
+<%= button_to 'Delete', user_path(@current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %>

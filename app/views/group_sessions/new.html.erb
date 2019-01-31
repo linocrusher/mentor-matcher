@@ -1,0 +1,27 @@
+<%= form_with scope: :group_session, url: group_sessions_path, local: true do |form| %>
+
+  <h1>Create New Session</h1>
+
+  <p>
+    Subject: <br>
+    <%= form.text_field :subject %>
+  </p>
+ 
+  <p>
+    Date and Time: <br>
+  </p>
+
+  <p>
+    Venue: <br>
+    <%= form.text_field :venue %>
+  </p> 
+
+  <p>
+    Topic: <br>
+    <%= form.text_field :topic %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

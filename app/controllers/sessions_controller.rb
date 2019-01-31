@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   	end
   end
 
-  def home #Should be removed once Thread Page is created.
+  def home #Should be removed once Session Page is created.
   end
 
   def logout

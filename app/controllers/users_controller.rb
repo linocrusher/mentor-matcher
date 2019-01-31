@@ -12,11 +12,19 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
 
-	if @user.save
-		redirect_to @user #Should redirect to Success Prompt Page / Session create page
-	else
-		render 'new'
-	end
+  	if @user.save
+  		redirect_to @user #Should redirect to Success Prompt Page / Session create page
+  	else
+  		render 'new'
+  	end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    /Logout/
+    session[:user_id] = nil
+    redirect_to home_index_path
   end
 
   private

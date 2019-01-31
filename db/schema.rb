@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190130043324) do
+ActiveRecord::Schema.define(version: 20190131124818) do
+
+  create_table "group_sessions", force: :cascade do |t|
+    t.string "subject"
+    t.time "schedule"
+    t.string "venue"
+    t.string "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "lastname"

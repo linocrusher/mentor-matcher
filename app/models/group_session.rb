@@ -1,0 +1,2 @@
+class GroupSession < ApplicationRecord
+end
