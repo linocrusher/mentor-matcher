@@ -1,6 +1,12 @@
 <h1>Welcome, <%=@current_user.username%>.</h1>
 
-Session List here
+<% @group_sessions.each do |group_session| %>
+	<%= group_session.subject %>
+	<%= group_session.schedule %>
+	<%= group_session.venue %>
+	<%= group_session.topic %>
+	<br>
+<% end %>
 
 <%= form_tag(controller: 'sessions', :action => 'logout') do %>
 	 <%= submit_tag("Log Out") %>

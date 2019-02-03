@@ -2,6 +2,17 @@
 
   <h1>Create New Session</h1>
 
+  <!Error printing>
+  <% if @group_session.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @group_session.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     Subject: <br>
     <%= form.text_field :subject %>
@@ -9,12 +20,7 @@
  
   <p>
     Date and Time: <br>
-    <%= form.date_field :date %> <br>
-    <% date = :date %>
-    <%= form.select :hour, (1..12).to_a%>:
-    <%= form.select :minute, (1..59).to_a%>
-    <%= form.select :type, ['AM', 'PM']%>
-    <!%= form.hidden_field :schedule, value: DateTime.new(date.year, date.month, date.day, :hour, :minute, 0) %>
+    <%= form.datetime_select :schedule %>
   </p>
 
   <p>
