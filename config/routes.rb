@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  post 'group_sessions/new'
+
   resources :users
 
   resources :group_sessions

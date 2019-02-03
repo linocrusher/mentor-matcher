@@ -1,0 +1,10 @@
+<h1>Welcome, <%=@current_user.username%>.</h1>
+
+Session List here
+
+<%= form_tag(controller: 'sessions', :action => 'logout') do %>
+	 <%= submit_tag("Log Out") %>
+<% end %> 
+
+<%= button_to 'Create new session', controller: 'group_sessions', action: 'new' %>
+<%= button_to 'Delete', user_path(@current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %>

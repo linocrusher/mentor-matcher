@@ -9,6 +9,12 @@
  
   <p>
     Date and Time: <br>
+    <%= form.date_field :date %> <br>
+    <% date = :date %>
+    <%= form.select :hour, (1..12).to_a%>:
+    <%= form.select :minute, (1..59).to_a%>
+    <%= form.select :type, ['AM', 'PM']%>
+    <!%= form.hidden_field :schedule, value: DateTime.new(date.year, date.month, date.day, :hour, :minute, 0) %>
   </p>
 
   <p>
@@ -25,3 +31,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+
+<%= link_to 'Back to session page', group_sessions_path %>

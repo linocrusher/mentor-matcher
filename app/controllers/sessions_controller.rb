@@ -9,14 +9,11 @@ class SessionsController < ApplicationController
   	authorized_user = User.authenticate(params[:username],params[:password])
   	if authorized_user
   		session[:user_id] = authorized_user.id
-  		redirect_to(:action => 'home') #Should redirect to Thread Page
+  		redirect_to group_sessions_path #Should redirect to Session Page
   	else
   		#Still missing error prompt
   		render "login"	
   	end
-  end
-
-  def home #Should be removed once Session Page is created.
   end
 
   def logout

@@ -1,7 +1,0 @@
-<h1>Login success. Welcome, <%=@current_user.username%>. Page placeholder for Session Page, please remove later (referenced by /sessions/home.html.erb).</h1>
-
-<%= form_tag(:action => 'logout') do %>
-	 <%= submit_tag("Log Out") %>
-<% end %> 
-
-<%= button_to 'Delete', user_path(@current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
