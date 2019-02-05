@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
   post 'group_sessions/new'
 
+  post 'users/auth'
+
+  patch 'users/update_status'
+
+  post 'users/update_status'
+
   resources :users
 
   resources :group_sessions

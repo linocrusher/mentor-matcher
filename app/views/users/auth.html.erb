@@ -1,0 +1,20 @@
+<% @unauthlist.each do |user| %>
+	<table>
+	<tr>
+	<td>
+	<%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+		<%= user.lastname %>
+		<%= form.hidden_field :username, value: user.username %>
+		<%= form.submit value: "Authenticate User" %>
+	<% end %>
+	</td>
+	</tr>
+	<br>
+	</table>
+<% end %>
+
+<% if @unauthlist.count == 0 %> <!If there are no pending authentications>
+	There are no pending accounts <br>
+<% end %>
+
+<%= link_to 'Back to session index', group_sessions_path %>

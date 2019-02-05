@@ -1,16 +1,30 @@
 <h1>Welcome, <%=@current_user.username%>.</h1>
-
-<% @group_sessions.each do |group_session| %>
-	<%= group_session.subject %>
-	<%= group_session.schedule %>
-	<%= group_session.venue %>
-	<%= group_session.topic %>
-	<br>
-<% end %>
-
 <%= form_tag(controller: 'sessions', :action => 'logout') do %>
 	 <%= submit_tag("Log Out") %>
 <% end %> 
 
+<table>
+<tr>
+	<th>Subject</th>
+	<th>Schedule</th>
+	<th>Venue</th>
+	<th>Topic</th>
+</tr>
+<br>
+
+<% @group_sessions.each do |group_session| %>
+	<tr>
+	<td><%= group_session.subject %></td>
+	<td><%= group_session.schedule %></td>
+	<td><%= group_session.venue %></td>
+	<td><%= group_session.topic %></td>
+	</tr>
+	<br>
+<% end %>
+</table>
+
 <%= button_to 'Create new session', controller: 'group_sessions', action: 'new' %>
-<%= button_to 'Delete', user_path(@current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to 'Delete user account', user_path(@current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if @current_user.status == "admin" %>
+	<%= button_to 'Authenticate users', controller: 'users', action: 'auth' %>
+<% end %>
