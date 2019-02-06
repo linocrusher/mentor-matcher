@@ -1,3 +1,21 @@
 // Place all the styles related to the lsessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.button {
+    font-size: 20px;
+    background-image: linear-gradient(to right, rgba(255,51,204,0.5), rgba(102,102,255,1));
+    border-radius: 25px;
+    border-style: none;
+    position: relative; 
+    height: 50px;   
+    width: 300px;
+    text-align: center;
+    color: white;
+}
+
+.link {
+    font-size: 15px;
+    color:white;
+    opacity: 0.8;
+}

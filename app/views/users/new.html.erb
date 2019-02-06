@@ -1,6 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <header>
+  <h>Mentor Matcher</h>
+  </header>
+</head>
+
+<body>
+
 <%= form_with scope: :user, url: users_path, local: true do |form| %>
 
-<h1>Sign up</h1>
+<div class="title">Sign up</div>
 
   <!Error printing>
   <% if @user.errors.any? %>
@@ -13,44 +26,64 @@
     </div>
   <% end %>
 
-  <p>
-    Username* <br>
-    <%= form.text_field :username %>
-  </p>
+  <div class="input-field">
+	<span class="icon usericon">
+	<%= form.text_field :username, type: 'username', class: 'input', placeholder: 'Username', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon lockicon">
+	<%= form.password_field :password, type: 'password', class: 'input', placeholder: 'Password', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon lockicon">
+	<%= form.password_field :password_confirmation, type: 'password', class: 'input', placeholder: 'Confirm Password', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon infoicon">
+	<%= form.text_field :lastname, class: 'input', placeholder: 'Last Name', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon infoicon">
+	<%= form.text_field :firstname, class: 'input', placeholder: 'First Name', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon infoicon">
+	<%= form.text_field :mi, class: 'input', placeholder: 'Middle Initial', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
+  <div class="input-field">
+	<span class="icon homeicon">
+	<%= form.text_field :address, class: 'input', placeholder: 'Present Address', required: true, autofocus: true %>
+	</span>
+  </div>
+  <br>
 
-  <p>
-    Password* <br>
-    <%= form.password_field :password %>
-  </p>
 
-  <p>
-    Password confirmation* <br>
-    <%= form.password_field :password_confirmation %>
-  </p>
-
-  <p>
-    Last name* <br>
-    <%= form.text_field :lastname %>
-  </p>
-
-  <p>
-    First name* <br>
-    <%= form.text_field :firstname %>
-  </p>
-
-  <p>
-    Middle initial <br>
-    <%= form.text_field :mi %>
-  </p>
-
-  <p>
-    Present Address* <br>
-    <%= form.text_area :address %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
+  <div>
+	<%= form.submit('Sign Up', class: "button") %>
+  </div>
+  
 <% end %>
 
-<%= link_to 'Back to homepage', home_index_path %>
+<div>
+<br><br><br><br>
+<%= link_to 'Back to homepage', home_index_path, class: "link" %>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+<html>

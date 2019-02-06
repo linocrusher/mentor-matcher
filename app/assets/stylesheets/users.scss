@@ -1,3 +1,57 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input::placeholder {
+    color:white;
+    opacity:.7;
+}
+.input {
+    font-size: 15px;
+    background-color: rgba(211,211,211, 0.4);
+    border-radius: 25px;
+    border-style: none;
+    height: 50px;   
+    width: 300px;
+    padding-left: 60px;
+ }
+
+.icon:before {
+    opacity:.8;
+    padding-left:20px;
+    height:100%;
+    display:-webkit-box;
+    font-family: 'Glyphicons Halflings';
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.usericon:before {
+    content:"\e008";
+}
+
+.lockicon:before {
+    content:"\e033";
+}
+
+.input-field {
+    position: relative; 
+    margin:auto;
+}
+
+.title {
+    font-size: 30px;
+    color:white;
+    align:center;
+    margin-top: 10%;
+    margin-bottom: 30px;
+}
