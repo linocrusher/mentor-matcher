@@ -3,11 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .select {
     border: 1px solid #fff;
-    background-color: transparent;
-    font-size: 10px;
+    font-size: 15px;
     border-radius: 25px;
     border-style: none;
-    opacity: 0.4;
+    color:white;
+}
+
+select {
+    border: 1px solid #fff;
+    background-color: transparent;
+    border-style: none;
+    color:white;
 }
 
 .circle {
@@ -15,7 +21,7 @@
     border-radius: 25px;
     border-style: none;
     height: 50px;   
-    width: 300px;
+    width: 380px;
     margin:auto;
 }
 
@@ -25,7 +31,7 @@
     border-radius: 25px;
     border-style: none;
     height: 50px;   
-    width: 300px;
+    width: 380px;
     padding-left: 60px;
 }
 
@@ -67,6 +73,16 @@ li {
 .homeicon:before {
     content:"\e021";
 }
+
+.schedicon:before {
+    content:"\e023";
+    font-family: 'Glyphicons Halflings';
+    padding-left:0;
+    font-size: 20px;
+    padding-left: 0;
+    display:initial;
+ 
+} 
 
 table {
     border-spacing: 1em .5em;
@@ -218,4 +234,23 @@ a:hover, a:visited, a:link, a:active {
 
 .menu-options:hover {
     color:black;
+}
+
+.auth-user-btn {
+    background-color:rgba(82, 79, 82, 0.5);
+    color:white;
+    font-weight:400;
+    border-radius: 25px;
+    border-style: none;
+    height: 30px;
+    border-style: solid;
+}
+
+.auth-user-btn:hover {
+    background-color:rgba(240, 195, 240, 0.5);
+    color:black;
+    border-style: solid;
+}
+.auth-user-view {
+    padding-left: 10%;
 }

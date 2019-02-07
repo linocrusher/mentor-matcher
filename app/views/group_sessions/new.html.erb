@@ -62,7 +62,7 @@ function closenav() {
 <div class="mm">Mentor Matcher</div>
 
 <li class="dropdown no-arrow dropdown-menu-right header-user">
-<a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <span class="d-none d-lg-inline">
 <p class="d-lg-inline uname"><%=@current_user.username%></p>
 </span>
@@ -109,10 +109,10 @@ function closenav() {
 
   <br>
 
-  <div class="circle">
-  <span class="select">
-    <%= form.datetime_select :schedule, :class => "select" %>
-  </span>
+  <div class="input-field input-session">
+	<span class="schedicon">
+  <%= form.datetime_select :schedule, :class => "select" %>
+	</span>
   </div>
   
   <br>
@@ -122,6 +122,7 @@ function closenav() {
 	<%= form.text_field :venue, class: 'input-session', placeholder: 'Venue', required: true, autofocus: true %>
 	</span>
   </div>
+
   <br>
 
   <div class="input-field">
