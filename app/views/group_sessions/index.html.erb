@@ -28,13 +28,13 @@
 
   <br>
 
+  <% if @current_user.status == "admin" %>
   <a class="input-field", role = "button">
   <span class="fas fa-check-circle iconfont">
-  <% if @current_user.status == "admin" %>
     <%= button_to 'Authenticate users', { controller: 'users', action: 'auth'} , :class => 'menu-options' %>
-  <% end %>
   </span>
   </a>
+  <% end %>
 
   </ul>
   </div>
