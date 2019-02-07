@@ -2,10 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 div {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.mm {
+    text-align:center;
+    font-weight: 100;
 }
 
 input::placeholder {
@@ -26,13 +32,25 @@ input::placeholder {
     opacity:.8;
     padding-left:20px;
     height:100%;
-    display:-webkit-box;
     font-family: 'Glyphicons Halflings';
+    display:-webkit-box;
     -webkit-box-pack:center;
     -webkit-box-align:center;
     position: absolute;
     font-size: 20px;
     pointer-events: none;
+}
+
+.iconfont:before {
+    opacity:.8;
+    padding-left:20px;
+    height:100%;
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
 }
 
 .usericon:before {
@@ -55,3 +73,4 @@ input::placeholder {
     margin-top: 10%;
     margin-bottom: 30px;
 }
+
