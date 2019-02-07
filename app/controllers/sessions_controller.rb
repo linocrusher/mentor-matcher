@@ -16,6 +16,10 @@ class SessionsController < ApplicationController
   	end
   end
 
+  def home
+    redirect_to group_sessions_path
+  end
+
   def logout
 	  session[:user_id] = nil
 	  redirect_to home_index_path
