@@ -73,7 +73,16 @@ input::placeholder {
     align:center;
     margin-top: 10%;
     margin-bottom: 30px;
-    font-weight: 500;
-    text-transform: uppercase;
 }
 
+.login-btn {
+    font-size: 20px;
+    background-image: linear-gradient(to right, rgba(255,51,204,0.5), rgba(102,102,255,1));
+    border-radius: 25px;
+    border-style: none;
+    position: relative; 
+    height: 50px;   
+    width: 300px;
+    text-align: center;
+    color: white;
+}

@@ -16,6 +16,10 @@ select {
     color:white;
 }
 
+select option {
+    color: black;
+  }
+
 .circle {
     background-color: rgba(211,211,211, 0.4);
     border-radius: 25px;
@@ -33,7 +37,9 @@ select {
     height: 50px;   
     width: 380px;
     padding-left: 60px;
+    color:white;
 }
+
 
 .header-user {
     top: 0;
@@ -58,10 +64,6 @@ li {
     content:"\e043";
 }
 
-.schedicon:before {
-    content:"\e023";
-}
-
 .venueicon:before {
     content:"\e024";
 }
@@ -81,7 +83,6 @@ li {
     font-size: 20px;
     padding-left: 0;
     display:initial;
- 
 } 
 
 table {
@@ -220,16 +221,13 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .menu-options {
-    color:white;
+  color:white;
   background-color: transparent;
   border-style: none;
   width: 300px;
   font-size: 20px;
-  text-align:center;
-  margin-top: 0;
   font-family: 'Abel', sans-serif;
   font-weight: 400;
-  display:initial;
 }
 
 .menu-options:hover {
