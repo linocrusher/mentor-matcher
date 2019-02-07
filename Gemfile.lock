@@ -60,7 +60,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.12.2)
+    coffee-script-source (1.8.0)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     erubi (1.8.0)
@@ -168,10 +168,11 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt
+  bcrypt (= 3.1.12)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  coffee-script-source (= 1.8.0)
   jbuilder (~> 2.5)
   puma (~> 3.7)
   rails (~> 5.1.6, >= 5.1.6.1)
@@ -184,4 +185,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.17.1
+   2.0.1
