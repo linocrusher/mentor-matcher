@@ -1,3 +1,254 @@
 // Place all the styles related to the group_sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.select {
+    border: 1px solid #fff;
+    font-size: 15px;
+    border-radius: 25px;
+    border-style: none;
+    color:white;
+}
+
+select {
+    border: 1px solid #fff;
+    background-color: transparent;
+    border-style: none;
+    color:white;
+}
+
+select option {
+    color: black;
+  }
+
+.circle {
+    background-color: rgba(211,211,211, 0.4);
+    border-radius: 25px;
+    border-style: none;
+    height: 50px;   
+    width: 380px;
+    margin:auto;
+}
+
+.input-session {
+    font-size: 15px;
+    background-color: rgba(211,211,211, 0.4);
+    border-radius: 25px;
+    border-style: none;
+    height: 50px;   
+    width: 380px;
+    padding-left: 60px;
+    color:white;
+}
+
+
+.header-user {
+    top: 0;
+    float:right;
+	list-style-type: none;
+}
+
+.header-menu {
+    margin-top: 10px;
+    float:left;
+	list-style-type: none;
+    margin-left: 0;
+}
+
+li {
+    list-style-type: none;
+    margin-left: 50px;
+}
+
+
+.subjicon:before {
+    content:"\e043";
+}
+
+.venueicon:before {
+    content:"\e024";
+}
+
+.infoicon:before {
+    content:"\e086";
+}
+
+.homeicon:before {
+    content:"\e021";
+}
+
+.schedicon:before {
+    content:"\e023";
+    font-family: 'Glyphicons Halflings';
+    padding-left:0;
+    font-size: 20px;
+    padding-left: 0;
+    display:initial;
+} 
+
+table {
+    border-spacing: 1em .5em;
+    padding: 0 2em 1em 0;
+    color:white;
+    align:center;
+}
+
+.rows-space {
+    border-collapse:separate; 
+    border-spacing:0 15px; 
+}
+
+td {
+    border-style: none;
+    padding: 30px;
+    background-color:rgba(211,211,211, 0.4);
+    width: 300px;
+    height: 50px;
+    font-size: 15px;
+}
+
+td:first-child {
+    border-top-left-radius: 15px; 
+    border-bottom-left-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+td:last-child {
+    border-bottom-right-radius: 15px; 
+    border-top-right-radius: 15px; 
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+tr {
+    border-spacing: 20em;
+}
+
+.dropdown.no-arrow .dropdown-toggle::after {
+    display: none;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-lg-inline {
+    display: inline;
+}
+
+
+.dropdown-menu-right {
+  top: 0; 
+  position:absolute; 
+  right:0;
+  margin-top: -3.5%;
+}
+
+.dropdown-menu-left {
+  top: 0; 
+  margin-left: 15px;
+  position:absolute; 
+}
+
+.logout {
+  background-color: transparent;
+  border-style: none;
+  width: 100px;
+  font-size: 15px;
+  font-family: 'Abel', sans-serif;
+  font-weight: 400;
+}
+
+.menu-icon {
+  color:white;
+}
+
+.sidenav {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1;
+    top: 0; 
+    left: 0;
+    background-color: rgba(179, 109, 161, 0.7); 
+    overflow-x: hidden;
+    transition: 0.5s; 
+    text-align:center;
+    margin: 0 auto;
+}
+  
+
+.sidenav a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+#no-link a:hover, #no-link a:visited, #no-link a:link, #no-link a:active{
+    text-decoration: none;
+}
+
+#no-link a:hover {
+    color: black;
+}
+.sidenav span:hover{
+  text-decoration: none;
+  color: black;
+}
+
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color:black;
+}
+   
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+  
+ 
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.menu-options {
+  color:white;
+  background-color: transparent;
+  border-style: none;
+  width: 300px;
+  font-size: 20px;
+  font-family: 'Abel', sans-serif;
+  font-weight: 400;
+}
+
+.menu-options:hover {
+    color:black;
+}
+
+.auth-user-btn {
+    background-color:rgba(82, 79, 82, 0.5);
+    color:white;
+    font-weight:400;
+    border-radius: 25px;
+    border-style: none;
+    height: 30px;
+    border-style: solid;
+}
+
+.auth-user-btn:hover {
+    background-color:rgba(240, 195, 240, 0.5);
+    color:black;
+    border-style: solid;
+}
+.auth-user-view {
+    padding-left: 10%;
+}

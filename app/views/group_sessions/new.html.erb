@@ -1,6 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <header>
+  
+  <div id="sidenavID" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closenav()">&times;</a>
+  <ul>
+
+  <a class="input-field", role = "button">
+  <span class="fas fa-plus-circle iconfont">
+  <%= button_to 'Create new session', {controller: 'group_sessions', action: 'new'} , :class => "menu-options" %>
+  </span>
+  </a>
+
+
+ <br>
+
+ <a class="input-field", role = "button">
+ <span class="fas fa-minus-circle iconfont">
+  <%= button_to 'Delete user account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' }, :class => "menu-options" %>
+  </span>
+  </a>
+
+  <br>
+
+  <a class="input-field", role = "button">
+  <span class="fas fa-check-circle iconfont">
+  <% if @current_user.status == "admin" %>
+    <%= button_to 'Authenticate users', { controller: 'users', action: 'auth'} , :class => 'menu-options' %>
+  <% end %>
+  </span>
+  </a>
+
+
+
+  </ul>
+  </div>
+
+
+<a role="button">
+<li class="dropdown-menu-left" onclick="opennav()"><i class="fas fa-bars"></i></li>
+</a>
+
+<script>
+function opennav() {
+  document.getElementById("sidenavID").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closenav() {
+  document.getElementById("sidenavID").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+</script>
+
+<div class="mm">Mentor Matcher</div>
+
+<li class="dropdown no-arrow dropdown-menu-right header-user">
+<a class="dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="d-none d-lg-inline">
+<p class="d-lg-inline uname"><%=@current_user.username%></p>
+</span>
+<i class="far fa-user user-icon"></i>
+</a>
+
+<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+<%= form_tag do %>
+  <%= submit_tag("Profile", :class=>"logout", :name=>"submit", disabled: true) %>
+<% end %> 
+
+<div class="dropdown-divider"></div>
+<%= form_tag(controller: 'sessions', :action => 'logout') do %>
+	<%= submit_tag("Log Out", :class=>"logout", :name=>"submit") %>
+<% end %> 
+</div>
+</li>
+
+</header>
+</head>
+
+<body>
+
 <%= form_with scope: :group_session, url: group_sessions_path, local: true do |form| %>
 
-  <h1>Create New Session</h1>
+  <div class="title">Create New Session</div>
 
   <!Error printing>
   <% if @group_session.errors.any? %>
@@ -12,30 +100,47 @@
       </ul>
     </div>
   <% end %>
-
-  <p>
-    Subject: <br>
-    <%= form.text_field :subject %>
-  </p>
  
-  <p>
-    Date and Time: <br>
-    <%= form.datetime_select :schedule %>
-  </p>
+  <div class="input-field">
+	<span class="icon subjicon">
+	<%= form.text_field :subject, class: 'input-session', placeholder: 'Subject', required: true, autofocus: true %>
+	</span>
+  </div>
 
-  <p>
-    Venue: <br>
-    <%= form.text_field :venue %>
-  </p> 
+  <br>
 
-  <p>
-    Topic: <br>
-    <%= form.text_field :topic %>
-  </p>
+  <div class="input-field input-session">
+  <span class="icon schedicon">
+  <%= form.datetime_select :schedule, :class => "select" %>
+	</span>
+  </div>
+  
+  <br>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="input-field">
+	<span class="icon venueicon">
+	<%= form.text_field :venue, class: 'input-session', placeholder: 'Venue', required: true, autofocus: true %>
+	</span>
+  </div>
+
+  <br>
+
+  <div class="input-field">
+	<span class="icon infoicon">
+	<%= form.text_field :topic, class: 'input-session', placeholder: 'Topic', required: true, autofocus: true %>
+	</span>
+  </div>
+
+  <br>
+
+  <div>
+	<%= form.submit('Save Session', class: "button") %>
+  </div>
+
 <% end %>
 
-<%= link_to 'Back to session index', group_sessions_path %>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+<html>
