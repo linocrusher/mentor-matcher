@@ -7,35 +7,36 @@
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <header>
-  
+
   <div id="sidenavID" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closenav()">&times;</a>
   <ul>
 
-  <a class="input-field", role = "button">
+  <div class="centered more-opt">
+  <a class="input-field" role = "button">
   <span class="fas fa-plus-circle iconfont">
   <%= button_to 'Create new session', {controller: 'group_sessions', action: 'new'} , :class => "menu-options" %>
   </span>
   </a>
+  </div>
 
- <br>
-
- <a class="input-field", role = "button">
+ <div class="centered">
+ <a class="input-field" role = "button">
  <span class="fas fa-minus-circle iconfont">
   <%= button_to 'Delete user account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' }, :class => "menu-options" %>
   </span>
   </a>
-
-  <br>
+  </div>
 
   <% if @current_user.status == "admin" %>
-  <a class="input-field", role = "button">
+  <div class="centered">
+  <a class="input-field" role = "button">
   <span class="fas fa-check-circle iconfont">
     <%= button_to 'Authenticate users', { controller: 'users', action: 'auth'} , :class => 'menu-options' %>
   </span>
   </a>
+  </div>
   <% end %>
-
 
   </ul>
   </div>
@@ -60,7 +61,7 @@ function closenav() {
 <div class="mm">Mentor Matcher</div>
 
 <li class="dropdown no-arrow dropdown-menu-right header-user">
-<a class="dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <span class="d-none d-lg-inline">
 <p class="d-lg-inline uname"><%=@current_user.username%></p>
 </span>
@@ -86,7 +87,7 @@ function closenav() {
 
 <%= form_with scope: :group_session, url: group_sessions_path, local: true do |form| %>
 
-  <div class="title">Create New Session</div>
+  <div class="title centered">Create New Session</div>
 
   <!Error printing>
   <% if @group_session.errors.any? %>
@@ -99,7 +100,8 @@ function closenav() {
     </div>
   <% end %>
  
-  <div class="input-field">
+
+  <div class="centered input-field">
 	<span class="icon subjicon">
 	<%= form.text_field :subject, class: 'input-session', placeholder: 'Subject', required: true, autofocus: true %>
 	</span>
@@ -107,7 +109,7 @@ function closenav() {
 
   <br>
 
-  <div class="input-field input-session">
+  <div class="centered input-field input-session">
   <span class="icon schedicon">
   <%= form.datetime_select :schedule, :class => "select" %>
 	</span>
@@ -115,7 +117,7 @@ function closenav() {
   
   <br>
 
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon venueicon">
 	<%= form.text_field :venue, class: 'input-session', placeholder: 'Venue', required: true, autofocus: true %>
 	</span>
@@ -123,7 +125,7 @@ function closenav() {
 
   <br>
 
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon infoicon">
 	<%= form.text_field :topic, class: 'input-session', placeholder: 'Topic', required: true, autofocus: true %>
 	</span>
@@ -131,7 +133,7 @@ function closenav() {
 
   <br>
 
-  <div>
+  <div class="centered" >
 	<%= form.submit('Save Session', class: "button") %>
   </div>
 

@@ -12,29 +12,31 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closenav()">&times;</a>
   <ul>
 
-  <a class="input-field", role = "button">
+  <div class="centered more-opt">
+  <a class="input-field" role = "button">
   <span class="fas fa-plus-circle iconfont">
   <%= button_to 'Create new session', {controller: 'group_sessions', action: 'new'} , :class => "menu-options" %>
   </span>
   </a>
+  </div>
 
- <br>
-
- <a class="input-field", role = "button">
+ <div class="centered">
+ <a class="input-field" role = "button">
  <span class="fas fa-minus-circle iconfont">
   <%= button_to 'Delete user account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' }, :class => "menu-options" %>
   </span>
   </a>
+  </div>
 
-  <br>
-
-  <a class="input-field", role = "button">
-  <span class="fas fa-check-circle iconfont">
   <% if @current_user.status == "admin" %>
+  <div class="centered">
+  <a class="input-field" role = "button">
+  <span class="fas fa-check-circle iconfont">
     <%= button_to 'Authenticate users', { controller: 'users', action: 'auth'} , :class => 'menu-options' %>
-  <% end %>
   </span>
   </a>
+  </div>
+  <% end %>
 
   </ul>
   </div>
@@ -84,11 +86,11 @@ function closenav() {
 
 <body>
 
-<div class="title">
+<div class="centered title">
 <h1>Pending Users</h1>
 </div>
 
-<div>
+<div class="centered">
 <table class="rows-space" width=35%>
 <% @unauthlist.each do |user| %>
 	
@@ -109,7 +111,7 @@ function closenav() {
 <% end %>
 </table>
 </div>
-<div>
+<div class="centered">
 <% if @unauthlist.count == 0 %> <!If there are no pending authentications>
 	<p class="title" style="font-size: 20px">There are no pending accounts</p> <br>
 <% end %>

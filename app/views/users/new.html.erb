@@ -13,7 +13,7 @@
 
 <%= form_with scope: :user, url: users_path, local: true do |form| %>
 
-<div class="title">Sign up</div>
+<div class="centered title">Sign up</div>
 
   <!Error printing>
   <% if @user.errors.any? %>
@@ -26,43 +26,43 @@
     </div>
   <% end %>
 
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon usericon">
 	<%= form.text_field :username, type: 'username', class: 'input', placeholder: 'Username', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon lockicon">
 	<%= form.password_field :password, type: 'password', class: 'input', placeholder: 'Password', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon lockicon">
 	<%= form.password_field :password_confirmation, type: 'password', class: 'input', placeholder: 'Confirm Password', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon infoicon">
 	<%= form.text_field :lastname, class: 'input', placeholder: 'Last Name', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon infoicon">
 	<%= form.text_field :firstname, class: 'input', placeholder: 'First Name', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon infoicon">
 	<%= form.text_field :mi, class: 'input', placeholder: 'Middle Initial', required: true, autofocus: true %>
 	</span>
   </div>
   <br>
-  <div class="input-field">
+  <div class="centered input-field">
 	<span class="icon homeicon">
 	<%= form.text_field :address, class: 'input', placeholder: 'Present Address', required: true, autofocus: true %>
 	</span>
@@ -70,13 +70,13 @@
   <br>
 
 
-  <div>
+  <div class="centered">
 	<%= form.submit('Sign Up', class: "login-btn") %>
   </div>
   
 <% end %>
 
-<div>
+<div class="centered">
 <br><br><br><br>
 <%= link_to 'Back to homepage', home_index_path, class: "link" %>
 </div>

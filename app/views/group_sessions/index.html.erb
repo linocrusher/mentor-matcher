@@ -12,28 +12,30 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closenav()">&times;</a>
   <ul>
 
-  <a class="input-field", role = "button">
+  <div class="centered more-opt">
+  <a class="input-field" role = "button">
   <span class="fas fa-plus-circle iconfont">
   <%= button_to 'Create new session', {controller: 'group_sessions', action: 'new'} , :class => "menu-options" %>
   </span>
   </a>
+  </div>
 
- <br>
-
- <a class="input-field", role = "button">
+ <div class="centered">
+ <a class="input-field" role = "button">
  <span class="fas fa-minus-circle iconfont">
   <%= button_to 'Delete user account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' }, :class => "menu-options" %>
   </span>
   </a>
-
-  <br>
+  </div>
 
   <% if @current_user.status == "admin" %>
-  <a class="input-field", role = "button">
+  <div class="centered">
+  <a class="input-field" role = "button">
   <span class="fas fa-check-circle iconfont">
     <%= button_to 'Authenticate users', { controller: 'users', action: 'auth'} , :class => 'menu-options' %>
   </span>
   </a>
+  </div>
   <% end %>
 
   </ul>
@@ -83,14 +85,14 @@ function closenav() {
 </head>
 
 <body>
-<div class="title">
+<div class="centered title">
 <h1>Welcome, <%=@current_user.username%>.</h1>
 </div>
 
 <div>
 
 
-<div>
+<div class="centered">
 <table class="rows-space">
 
 <% @group_sessions.each do |group_session| %>

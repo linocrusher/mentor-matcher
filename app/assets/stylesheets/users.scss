@@ -2,13 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-div {
+.centered {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .mm {
     text-align:center;
     font-weight: 100;
