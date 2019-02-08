@@ -109,10 +109,12 @@ function closenav() {
 
   <br>
 
-  <div class="centered input-field input-session">
-  <span class="icon schedicon">
-  <%= form.datetime_select :schedule, :class => "select" %>
-	</span>
+  <div class="centered input-field circle">
+  <i class="fas fa-clock sched-icon">	</i>
+  <span class="centered default-sched">
+ <%= form.datetime_select :schedule, :class => "select" %>
+ </span>
+
   </div>
   
   <br>
