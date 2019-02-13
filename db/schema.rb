@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190131124818) do
+ActiveRecord::Schema.define(version: 20190212152830) do
 
   create_table "group_sessions", force: :cascade do |t|
     t.string "subject"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20190131124818) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "expires"
   end
 
 end

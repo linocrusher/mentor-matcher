@@ -101,7 +101,11 @@ function closenav() {
     <%= user.firstname %>
 		<%= form.hidden_field :username, value: user.username %>
 		<td class="auth-user-view">
-		<%= form.submit value: "Authenticate User", class: "auth-user-btn" %>
+		<% if user.expires == nil %>
+			<%= form.submit value: "Authenticate User", class: "auth-user-btn" %>
+		<% else %>
+			<%= form.submit value: "Renew User", class: "auth-user-btn" %>
+		<% end %>
 		</td>
 	<% end %>
 	</td>
