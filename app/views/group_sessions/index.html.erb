@@ -111,6 +111,9 @@ function closenav() {
 	<li><%= group_session.venue %></li>
 	<li><%= group_session.topic %></li>
 	</td>
+	<td>
+		<%= link_to 'View', group_session_path(group_session), class: "auth-user-btn"%>
+	</td>
 	</tr>
 <% end %>
 </table>

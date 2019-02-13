@@ -1,0 +1,41 @@
+<p>
+  <strong>Subject:</strong>
+  <%= @group_session.subject %>
+</p>
+
+<p>
+  <strong>Schedule:</strong>
+  <%= @group_session.schedule %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @group_session.venue %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @group_session.topic %>
+</p>
+
+<p>
+  <strong>Members:</strong>
+</p>
+
+
+<% @members.each do |member| %>
+
+<%= member.user_id %>
+		
+<% end %>
+
+<%= form_with model: @group_session, local: true do |form| %>
+	<%= form.hidden_field :id, value: @group_session.id %>
+		<% if @members.where(:user_id => @current_user.id).exists? %> <!User in member list>
+			<%= form.submit('Leave', class: "auth-user-btn") %>
+		<% else %>
+			<%= form.submit('Join', class: "auth-user-btn") %> 
+		<% end %>
+<% end %>
+</br>
+<%= link_to 'Back', group_sessions_path, class: "auth-user-btn"%>

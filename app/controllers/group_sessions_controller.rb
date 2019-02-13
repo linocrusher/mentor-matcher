@@ -4,7 +4,7 @@ Code History:
 Eizer Jan 30, 2019  Added group sessions controller
 Eizer Feb 3, 2019  Added methods and view constraint/
 class GroupSessionsController < ApplicationController
-  before_action :authenticate_user, :only => [:new, :create, :index] #Can only be accessed by logged in users
+  before_action :authenticate_user, :only => [:new, :create, :index, :update, :show] #Can only be accessed by logged in users
 	def new
 		@group_session = GroupSession.new
 	end
@@ -23,8 +23,27 @@ class GroupSessionsController < ApplicationController
 		@group_sessions = GroupSession.all
 	end
 
+	def show
+    	@group_session = GroupSession.find(params[:id])
+    	@members = Link.where(:group_session_id => params[:id])
+  	end
+
+  	def update
+  		@group_session = GroupSession.find(params[:group_session][:id])
+  		if params[:commit] == "Join"
+  			@link = Link.new() #Create a link entry between user and group session
+  			@link.update(:user_id => @current_user.id, :group_session_id => params[:group_session][:id])
+  			redirect_to group_session_path(@group_session)
+  		elsif params[:commit] == "Leave"
+  			@link = Link.where(:user_id => @current_user.id, :group_session_id => params[:group_session][:id])
+  			@link.destroy_all
+  			redirect_to group_session_path(@group_session)
+  		end
+  		#render group_session_path()
+  	end
+
 	private
 	def group_session_params #For strong parameters
-		params.require(:group_session).permit(:subject, :schedule, :venue, :topic)
+		params.require(:group_session).permit(:subject, :schedule, :venue, :topic, :username, :group_session, :type)
 	end
 end
