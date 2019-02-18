@@ -27,6 +27,11 @@ class GroupSessionsController < ApplicationController
 	def show
     	@group_session = GroupSession.find(params[:id])
     	@members = Link.where(:group_session_id => params[:id])
+    	@names = []
+    	@members.each do |member|
+    		puts member.user_id
+    		@names.push(User.find(member.user_id))
+    	end
   	end
 
   	def update

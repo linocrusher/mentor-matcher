@@ -27,9 +27,12 @@ Eizer G. Relayson - 2/18/2019 - Added basic frontend for show session
 </p>
 
 
-<% @members.each do |member| %>
+<% @names.each do |name| %>
 
-<%= member.user_id %>
+<%= name.firstname %>
+
+<%= name.lastname %>
+<br>
 		
 <% end %>
 
