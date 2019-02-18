@@ -1,7 +1,9 @@
 <!-- 
 Code History:
 Martina Sophia P. Casiano - 2/6/2019 - Added frontend for log in page
+Eizer G. Relayson - 2/18/2019 - Added error prompts for login
 -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +20,16 @@ Martina Sophia P. Casiano - 2/6/2019 - Added frontend for log in page
 <body>
 
 <div class="centered title">Log in</div>
+
+<% if $b == 1 %>
+	User account still pending authentication
+<% elsif $b == 2 %>
+	User account has expired and is pending renewal
+<% elsif $b == 3 %>
+	Invalid Password
+<% elsif $b == 4 %>
+	No such user exists
+<% end %>
 
 <%= form_tag(:action => 'login_attempt') do %>    
 	<div class="centered input-field">

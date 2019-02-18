@@ -3,6 +3,7 @@ Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Added group sessions controller
 Eizer Feb 3, 2019  Added methods and view constraint/
+
 class GroupSessionsController < ApplicationController
   before_action :authenticate_user, :only => [:new, :create, :index, :update, :show] #Can only be accessed by logged in users
 	def new

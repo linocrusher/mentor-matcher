@@ -2,6 +2,7 @@
 Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Updated routing/
+
 Rails.application.routes.draw do
   get 'sessions/login'
 
