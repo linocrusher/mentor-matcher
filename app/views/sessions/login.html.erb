@@ -1,68 +1,97 @@
-<!-- 
-Code History:
-Martina Sophia P. Casiano - 2/6/2019 - Added frontend for log in page
-Eizer G. Relayson - 2/18/2019 - Added error prompts for login
--->
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
-  <header>
-
-  <div class="mm">Mentor Matcher</div>
-  </header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		
+		<%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "lsessions" %>
 </head>
 
 <body>
 
-<div class="centered title">Log in</div>
+    <div class="overlay"></div>
 
-<% if $b == 1 %>
-	User account still pending authentication
-<% elsif $b == 2 %>
-	User account has expired and is pending renewal
-<% elsif $b == 3 %>
-	Invalid Password
-<% elsif $b == 4 %>
-	No such user exists
-<% end %>
+		<!--LOGO/SMTH
+		<nav class="navbar fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">logo/smth</span></a>
+					</div>
+				</div>
+		</nav> 
+		-->
 
-<%= form_tag(:action => 'login_attempt') do %>    
-	<div class="centered input-field">
-	<span class="icon usericon">
-	<%= text_field_tag :username, nil, type: 'username', class: 'input', placeholder: 'Username', required: true, autofocus: true %>
-	</span>
-	</div>
+		<!--MAIN CONTENT-->
+		<div class="wrapper">
+				<div class="container">
 
-	<br>
+						<div class="centered header-form mm">
+						<img src="/assets/logo.png" class="logo">
+						Mentor Matcher
+						</div>
 
-	<div class="centered input-field">
-	<span class="icon lockicon">
-	<%= password_field_tag :password, nil, type: 'password', class: 'input', placeholder: 'Password', required: true %>
-	</span>
-	</div>
+								
+								<% if $b == 1 %>
+									<div class="err-msg">
+										<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp User account still pending authentication
+									</div>
+									
+								<% elsif $b == 2 %>
+									<div class="err-msg">
+									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp User account has expired and is pending renewal
+									</div>
+									
+								<% elsif $b == 3 %>
+									<div class="err-msg">
+									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp Invalid Password
+									</div>
+									
+								<% elsif $b == 4 %>
+									<div class="err-msg">
+									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp No such user exists<br>
+									</div>
+									
+								<% end %>
+								</div>
 
-	<br>
+								<%= form_tag(:action => 'login_attempt') do %>   
+										<div class="login"> 
+												<div class="centered input-field">
+														<span class="icon fa fa-user">
+														<%= text_field_tag :username, nil, type: 'username', class: 'input', placeholder: 'Username', required: true, autofocus: true %>
+														</span>
+												</div>
+												<br>
+												<div class="centered input-field">
+														<span class="icon fa fa-lock">
+														<%= password_field_tag :password, nil, type: 'password', class: 'input', placeholder: 'Password', required: true %>
+														</span>
+												</div>
+												<br>
+												<div class="centered">
+												<%= submit_tag('Log in', class: "login-btn") %>
+												</div>
+										</div>
+								<% end %>
+		
+								<div class="centered">
+								<br><br><br>
+								<p class="note">Don't have an account? <a href="/users/new" style="font-weight:bold">Sign Up</a>.</p>
+								</div>
 
-	<div class="centered">
-	<%= submit_tag('Log in', class: "login-btn") %>
-	</div>
-	
-<% end %>
+						</div>
+				</div>
+		</div>
 
-<div class="centered">
-<br><br><br><br>
-<%= link_to 'Back to homepage', home_index_path, class: "link" %>
-</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
-<html>
+</html>

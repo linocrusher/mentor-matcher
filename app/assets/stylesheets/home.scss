@@ -2,30 +2,103 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+/* Background */
+
 body {
-    background: image-url('bg.png') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background: url("bg.png") no-repeat fixed center bottom;
+  background-size: cover;
+  position: relative;
 }
 
-img {
-    opacity: 0.5;
+.overlay {
+  opacity: 0.6;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
 }
 
-header {
-    position: fixed;
-    top: 0; 
-    width: 100%; 
-    background-image: linear-gradient(to right, rgba(157,171,213,0.7), rgba(187,78,150,0.9));
-    height: 50px;
-    font-family: 'Lobster', cursive;
-    font-size: 30px;
-    text-align:center;
-    color:white;
+/* Header */
+
+#header-home {
+  background-color: transparent;
+  border: 0px;
+  padding: 20px 0;
 }
 
-.menu-icon {
-    content:"\e236";
+/* Text */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-info {
+  color: #fff;
+  margin-top: 13%;
+}
+
+.bnr-title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 510;
+  text-transform: uppercase;
+  font-size: 10vh;
+  letter-spacing: 2px;
+}
+
+.bnr-info {
+  font-family: "Open Sans", sans-serif;
+  font-size: 3vh;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bnr-title2 {
+  /* background: -webkit-linear-gradient(rgb(255, 51, 204), rgb(102, 102, 255)); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+*/
+  color: #9c33ff;
+}
+
+/* Buttons */
+
+.btn-login,
+.btn-signup,
+.btn-login:hover,
+.btn-login:focus,
+.btn-signup:focus {
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  border: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  padding: 10px 30px;
+  border-radius: 60px;
+  margin-top: 20px;
+  outline: none !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: all 0.3s;
+}
+
+.btn-login {
+  background-color: #9c33ff;
+}
+
+.btn-signup,
+.btn-signup:focus {
+  margin-left: 15px;
+  border: 1px solid #cfcfcf;
+  color: #9c33ff;
+}
+
+.btn-signup:hover {
+  background: #9c33ff;
+  color: #fff;
 }

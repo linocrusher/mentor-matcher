@@ -2,84 +2,126 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Background */
+
+body {
+  background: url("bg.png") no-repeat fixed center bottom;
+  background-size: cover;
+  position: relative;
+}
+
+.overlay {
+  opacity: 0.5;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+/* Header */
+
+#header-home {
+  background-color: transparent;
+  border: 0px;
+  padding: 20px 0;
+}
+
+/* sign up form */
+
 .centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.header-form {
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+
+.logo {
+  opacity: 0.8;
+  height: 50px;
+  width: 55px;
+  margin-right: 8px;
+}
+
 .mm {
-    text-align:center;
-    font-weight: 100;
-}
-
-input::placeholder {
-    color:white;
-    opacity:.7;
-}
-.input {
-    font-size: 15px;
-    background-color: rgba(211,211,211, 0.4);
-    border-radius: 25px;
-    border-style: none;
-    height: 50px;   
-    width: 300px;
-    padding-left: 60px;
- }
-
-.icon:before {
-    opacity:.8;
-    padding-left:20px;
-    height:100%;
-    font-family: 'Glyphicons Halflings';
-    display:-webkit-box;
-    -webkit-box-pack:center;
-    -webkit-box-align:center;
-    position: absolute;
-    font-size: 20px;
-    pointer-events: none;
-}
-
-.iconfont:before {
-    opacity:.8;
-    padding-left:20px;
-    height:100%;
-    position: absolute;
-    font-size: 20px;
-    pointer-events: none;
-    display:-webkit-box;
-    -webkit-box-pack:center;
-    -webkit-box-align:center;
-}
-
-.usericon:before {
-    content:"\e008";
-}
-
-.lockicon:before {
-    content:"\e033";
-}
-
-.input-field {
-    position: relative; 
-    margin:auto;
+  color: white;
+  font-family: "Lobster", cursive;
+  font-size: 35px;
 }
 
 .title {
-    font-size: 30px;
-    color:white;
-    align:center;
-    margin-top: 10%;
-    margin-bottom: 30px;
+  font-size: 40px;
+  font-weight: 100;
+  color: #ffffff;
+  align: center;
+  margin-top: 10%;
+  margin-bottom: 30px;
+  font-family: "Nunito", sans-serif;
 }
 
+/* input field */
+
+::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.input {
+  font-size: 18px;
+  background-color: rgba(211, 211, 211, 0.4);
+  border-radius: 25px;
+  border-style: none;
+  height: 50px;
+  width: 300px;
+  padding-left: 60px;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: #ffffff;
+  outline: none;
+}
+
+.input-field {
+  position: relative;
+  margin: auto;
+}
+
+.icon:before {
+  color: white;
+  opacity: 0.8;
+  padding-left: 20px;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  position: absolute;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.signup {
+  line-height: 15px;
+}
+
+/* sign up button */
+
 .login-btn {
-    font-size: 20px;
-    background-image: linear-gradient(to right, rgba(255,51,204,0.5), rgba(102,102,255,1));
-    border-radius: 25px;
-    border-style: none;
-    position: relative; 
-    height: 50px;   
-    width: 300px;
-    text-align: center;
-    color: white;
+  font-size: 20px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 51, 204, 0.5),
+    rgba(102, 102, 255, 1)
+  );
+  border-radius: 25px;
+  border-style: none;
+  position: relative;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
 }
