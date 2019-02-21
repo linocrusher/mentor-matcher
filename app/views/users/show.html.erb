@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "group_sessions" %>
+    <%= stylesheet_link_tag "users" %>
 </head>
 
 <body>
+    <div class="overlay"></div>
 
-    <div class="main-overlay"></div>
+    <div class="msg centered text-center">
+        <strong>
+        Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
+        </strong>
+    </div>
 
-    <p>
-    <strong>Welcome <%= @user.username %>! Your account has been created</strong>
-    </p>
+    <div class="text-center">
     <%= link_to 'Back to homepage', home_index_path %>
-
+    </div>
 </body>
 </html>
