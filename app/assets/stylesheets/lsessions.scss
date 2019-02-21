@@ -138,8 +138,10 @@ body {
   border-width: 1px;
   border-radius: 5px;
   margin: auto;
-  width: 300px;
+  width: fit-content;
+  min-width: 300px;
   padding-left: 2%;
+  padding-right: 2%;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 10px;
