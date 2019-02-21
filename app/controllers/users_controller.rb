@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    @links = Link.where(:user_id => @user.id)
+    @links.destroy_all
     @user.destroy
     /Logout/
     session[:user_id] = nil
