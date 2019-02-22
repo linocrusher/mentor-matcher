@@ -1,3 +1,8 @@
+<!--This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+Author: Martina Sophia P. Casiano
+Code History:
+Sophia - 2/6/2019 - Added frontend for create sessions page
+-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +13,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "group_sessions" %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 
 <body>
@@ -54,7 +63,7 @@
                 Mentor Matcher
             </div>
             
-            <div class="collapse navbar-collapse">
+            <div class="user collapse navbar-collapse">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown">
                         <div data-toggle="dropdown">
@@ -103,12 +112,23 @@
                             </span>
                         </div>
                         <br>
-                        <div class="centered input-field circle">
-                            <i class="fas fa-clock sched-icon">	</i>
-                            <span class="centered">
-                            <%= form.datetime_select :schedule, :class => "select" , required: true, autofocus: true %>
+                        
+                        <div class="centered input-field" id="sched">
+                            <span class="icon fas fa-clock">
+                            <%= form.text_field :schedule, placeholder: 'Schedule',
+                            :id => 'datetimepicker5', 
+                            :class => "input-session", 
+                            data: {toggle: "datetimepicker", target: "#datetimepicker5"} %>
                             </span>
                         </div>
+
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker5').datetimepicker();
+                            });
+                            $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, { icons: { time: 'fas fa-clock', date: 'fas fa-calendar', up: 'fas fa-arrow-up', down: 'fas fa-arrow-down', previous: 'fas fa-arrow-left', next: 'fas fa-arrow-right', today: 'fas fa-arrow-right', clear: 'far fa-trash', close: 'far fa-times' } });
+                        </script>
+
                         <br>
                         <div class="centered input-field">
                             <span class="icon fas fa-building">

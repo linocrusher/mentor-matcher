@@ -132,3 +132,31 @@ body {
   font-size: 20px;
   margin-top: 10%;
 }
+
+/* error message */
+
+.err-msg {
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 153, 153, 0.9);
+  border-style: solid;
+  border-color: rgb(138, 1, 1);
+  border-width: 1px;
+  border-radius: 5px;
+  margin: auto;
+  width: fit-content;
+  min-width: 300px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.err-msg i {
+  font-size: 20px;
+  color: rgb(156, 12, 12);
+}
+
+li {
+  list-style-type: none;
+}

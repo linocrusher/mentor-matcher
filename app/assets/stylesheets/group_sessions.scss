@@ -180,19 +180,19 @@ ul ul a {
   font-family: "Abel", sans-serif;
 }
 
-.dropdown-menu input {
+.user .dropdown-menu input {
   background-color: transparent;
 }
 
-.navbar-nav > li > .dropdown-menu {
+.user .navbar-nav > li > .dropdown-menu {
   background-color: #430f5f;
 }
-.dropdown span {
+.user .dropdown span {
   color: #ffffff;
   cursor: pointer;
 }
 
-.dropdown-menu li {
+.user .dropdown-menu li {
   font-size: 15px;
   border-style: none;
   width: 100%;
@@ -200,16 +200,16 @@ ul ul a {
   padding: 5px 15px 5px 15px;
   opacity: 0.7;
 }
-.dropdown-menu li:hover {
+.user .dropdown-menu li:hover {
   background-color: rgb(182, 82, 248);
   opacity: 1;
 }
-.dropdown i {
+.user .dropdown i {
   font-size: 25px;
   vertical-align: center;
 }
 
-.drp-btn {
+.user .drp-btn {
   border: none;
   background-color: transparent;
   color: #ffffff;
@@ -239,30 +239,31 @@ li {
   padding-right: 70px;
 }
 
-table {
+.view table {
   border-spacing: 1em 0.5em;
   color: #ffffff;
 }
 
-.rows-space {
+.view .rows-space {
   border-collapse: separate;
   border-spacing: 0 15px;
 }
 
-td {
+.view td {
   border-style: none;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   font-size: 16px;
 }
 
-td:first-child {
+.view td:first-child {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-bottom: 20px;
   margin-top: 10px;
 }
-td:last-child {
+
+.view td:last-child {
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
   margin-bottom: 20px;
@@ -314,7 +315,7 @@ td:last-child {
   border-radius: 25px;
   border-style: none;
   height: 50px;
-  width: 350px;
+  width: 320px;
   padding-left: 60px;
   font-weight: 100;
   color: #ffffff;
@@ -326,6 +327,16 @@ td:last-child {
   line-height: 20px;
 }
 
+.createsession #sched ul li a:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: black;
+}
+
+.createsession #sched ul li a {
+  color: black;
+}
+
 .circle {
   background-color: rgba(211, 211, 211, 0.4);
   border-radius: 25px;
@@ -333,24 +344,6 @@ td:last-child {
   height: 50px;
   width: 350px;
   margin: auto;
-}
-.select {
-  border: 1px solid #fff;
-  font-size: 15px;
-  border-radius: 25px;
-  border-style: none;
-  color: white;
-}
-
-select {
-  border: 1px solid #fff;
-  background-color: transparent;
-  border-style: none;
-  color: white;
-}
-
-select option {
-  color: black;
 }
 
 ::-webkit-input-placeholder {
@@ -396,7 +389,7 @@ select option {
   border-style: none;
   position: relative;
   height: 50px;
-  width: 350px;
+  width: 320px;
   text-align: center;
   color: white;
 }
@@ -410,7 +403,7 @@ select option {
 /* join session */
 
 .session-info {
-  color: rgb(228, 156, 228);
+  color: white;
   margin-top: 10%;
   background-color: rgba(87, 84, 84, 0.3);
   border-radius: 15px;

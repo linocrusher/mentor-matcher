@@ -37,10 +37,10 @@
           
                 <!Error printing>
                 <% if @user.errors.any? %>
-                    <div id="error_explanation">
+                    <div id="error_explanation centered">
                         <ul>
                             <% @user.errors.full_messages.each do |msg| %>
-                                <li><%= msg %></li>
+                                <li class="err-msg"><i class="fa far fa-times"></i>&nbsp<%= msg %></li>
                             <% end %>
                         </ul>
                     </div>
