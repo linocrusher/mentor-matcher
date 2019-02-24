@@ -68,6 +68,9 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                             <span class="username" role="button"><%=@current_user.username%></span>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-right">
+                        	<li>
+                                <%= link_to 'Profile', user_path(@current_user.id), class: 'drp-btn' %>
+                            </li>
                             <li>
                                 <%= button_to 'Deactivate Account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'drp-btn'  %>
                             </li>
@@ -128,8 +131,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 <li class="label">Members:</li>
                 <% @names.each do |name| %>
                     <li>
-                    <%= name.firstname %>
-                    <%= name.lastname %>
+                    <%= link_to name.firstname + " " + name.lastname, user_path(name.id) %>
                     </li>
                 <% end %>
                 </td>

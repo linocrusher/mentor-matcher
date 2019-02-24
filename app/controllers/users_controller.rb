@@ -5,11 +5,11 @@ Eizer Jan 30, 2019  Added user controller
 Eizer Feb 5, 2019  Added methods under controller. Also added view constraints/
 
 class UsersController < ApplicationController
-  before_action :save_login_state, :only => [:show, :new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
+  before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
   before_action :authenticate_user, :only => [:auth, :update_status, :destroy] #Can only be accessed by logged in users
 
   def show
-	@user = User.find(params[:id]) #save the user instance inside @user
+	  @user = User.find(params[:id]) #save the user instance inside @user
   end
 
   def new

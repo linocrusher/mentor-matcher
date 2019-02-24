@@ -11,17 +11,27 @@
     <%= stylesheet_link_tag "users" %>
 </head>
 
-<body>
-    <div class="overlay"></div>
+<% if session[:user_id] == nil %> 
+    <body>
+        <div class="overlay"></div>
 
-    <div class="msg centered text-center">
-        <strong>
-        Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
-        </strong>
-    </div>
+        <div class="msg centered text-center">
+            <strong>
+            Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
+            </strong>
+        </div>
 
-    <div class="text-center">
-    <%= link_to 'Back to homepage', home_index_path %>
-    </div>
-</body>
+        <div class="text-center">
+        <%= link_to 'Back to homepage', home_index_path %>
+        </div>
+    </body>
+
+<% else %>
+First Name: <%= @user.firstname %> <br>
+Last Name: <%= @user.lastname %> <br>
+Address: <%= @user.address %> <br>
+Rating: <br>
+
+<% end %>
+
 </html>

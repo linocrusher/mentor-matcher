@@ -68,6 +68,9 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                         </div>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li>
+                                <%= link_to 'Profile', user_path(@current_user.id), class: 'drp-btn' %>
+                            </li>
+                            <li>
                                 <%= button_to 'Deactivate Account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'drp-btn'  %>
                             </li>
                             <li>
