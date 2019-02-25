@@ -11,8 +11,6 @@ class GroupSessionsController < ApplicationController
 	end
 
 	def create
-		puts params[:group_session][:schedule]
-
   	  	@group_session = GroupSession.new(group_session_params)
   		if @group_session.save
   			#render 'index'

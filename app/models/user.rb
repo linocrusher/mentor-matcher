@@ -14,6 +14,8 @@ class User < ApplicationRecord
 	validates :address, presence: true
 	has_many :links
 	has_many :group_sessions, through: :links
+	has_many :reports
+	has_many :users, through: :reports
 
 	def encrypt_password
 		self.salt = BCrypt::Engine.generate_salt
