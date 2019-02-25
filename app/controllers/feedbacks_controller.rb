@@ -7,7 +7,8 @@ class FeedbacksController < ApplicationController
 	before_action :authenticate_user, :only => [:new, :create, :destroy]
 
 	def new
-		@f = Feedback.new
+		@feedback = Feedback.new
+		@r = User.where.not(:id => @current_user.id)
 	end
 
 	def create

@@ -11,13 +11,23 @@
     <%= stylesheet_link_tag "users" %>
 </head>
 
-<%= form_with scope: :article, local: true do |form| %>
+<%= form_for @feedback, local: true do |form| %>
 
   <%= form.hidden_field :sender, value: @current_user.id %>
  
   <p>
+  	<%= form.label :type %> <br>
+  	<%= form.select :type, ['Feedback', 'Report'] %>
+  </p>
+
+  <p>
+  	<%= form.label :recipient %> <br>
+  	<%= form.collection_select(:recipient, @r, :id, :username) %>
+  </p>
+
+  <p>
     <%= form.label :content %><br>
-    <%= form.text_area :text %>
+    <%= form.text_area :content %>
   </p>
  
   <p>
