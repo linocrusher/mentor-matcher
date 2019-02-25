@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225022213) do
+ActiveRecord::Schema.define(version: 20190225031926) do
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "type"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_feedbacks_on_recipient_id"
+    t.index ["sender_id"], name: "index_feedbacks_on_sender_id"
+  end
 
   create_table "group_sessions", force: :cascade do |t|
     t.string "subject"
