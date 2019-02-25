@@ -114,20 +114,21 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                         <br>
                         
                         <div class="centered input-field" id="sched">
-                            <span class="icon fas fa-clock">
+                            <%= form.datetime_select :schedule, class: 'input-session', placeholder: 'Schedule', required: true, autofocus: true %>
+                            <!--span class="icon fas fa-clock">
                             <%= form.text_field :schedule, placeholder: 'Schedule',
                             :id => 'datetimepicker5', 
                             :class => "input-session", 
                             data: {toggle: "datetimepicker", target: "#datetimepicker5"} %>
-                            </span>
+                            </span-->
                         </div>
 
-                        <script type="text/javascript">
+                        <!--<script type="text/javascript">
                             $(function () {
                                 $('#datetimepicker5').datetimepicker();
                             });
                             $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, { icons: { time: 'fas fa-clock', date: 'fas fa-calendar', up: 'fas fa-arrow-up', down: 'fas fa-arrow-down', previous: 'fas fa-arrow-left', next: 'fas fa-arrow-right', today: 'fas fa-arrow-right', clear: 'far fa-trash', close: 'far fa-times' } });
-                        </script>
+                        </script-->
 
                         <br>
                         <div class="centered input-field">

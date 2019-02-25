@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190213023047) do
+ActiveRecord::Schema.define(version: 20190225022213) do
 
   create_table "group_sessions", force: :cascade do |t|
     t.string "subject"
-    t.time "schedule"
+    t.datetime "schedule"
     t.string "venue"
     t.string "topic"
     t.datetime "created_at", null: false
