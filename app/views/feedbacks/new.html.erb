@@ -11,28 +11,18 @@
     <%= stylesheet_link_tag "users" %>
 </head>
 
-<% if session[:user_id] == nil %> 
-    <body>
-        <div class="overlay"></div>
+<%= form_with scope: :article, local: true do |form| %>
 
-        <div class="msg centered text-center">
-            <strong>
-            Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
-            </strong>
-        </div>
-
-        <div class="text-center">
-        <%= link_to 'Back to homepage', home_index_path %>
-        </div>
-    </body>
-
-<% else %>
-
-First Name: <%= @user.firstname %> <br>
-Last Name: <%= @user.lastname %> <br>
-Address: <%= @user.address %> <br>
-Rating: <br>
-
+  <%= form.hidden_field :sender, value: @current_user.id %>
+ 
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :text %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
 <% end %>
 
 </html>
