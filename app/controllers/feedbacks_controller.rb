@@ -25,8 +25,13 @@ class FeedbacksController < ApplicationController
 
 	end
 
+	def index
+		#@feedback = Feedback.where(:t => "Feedback")
+		@report = Feedback.where(:t => "Report")
+	end
+
 	private
 	def feedback_params #For strong parameters
-		params.require(:feedback).permit(:sender, :recipient, :type, :content)
+		params.require(:feedback).permit(:sender, :recipient, :t, :content)
 	end
 end

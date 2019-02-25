@@ -41,7 +41,11 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 <%= button_to 'Manage User Accounts', { controller: 'users', action: 'auth'}, :class=>'btn wbtn' %>
                 <% end %>
             </li>
-
+            <li>
+                <% if @current_user.status == "admin" %>
+                    <%= link_to 'View User Reports', feedbacks_path, :class=>'btn wbtn' %>
+                <% end %>
+            </li>
         </ul>
     </nav>
 

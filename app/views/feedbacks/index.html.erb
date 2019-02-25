@@ -11,28 +11,12 @@
     <%= stylesheet_link_tag "users" %>
 </head>
 
-<%= form_for @feedback, local: true do |form| %>
+Reports: <br>
 
-  <%= form.hidden_field :sender, value: @current_user.id %>
- 
-  <p>
-  	<%= form.label :type %> <br>
-  	<%= form.select :t, ['Feedback', 'Report'] %>
-  </p>
-
-  <p>
-  	<%= form.label :recipient %> <br>
-  	<%= form.collection_select(:recipient, @r, :id, :username) %>
-  </p>
-
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+<% @report.each do |r| %>
+Sender: <%= User.find(r.sender).username %> <br>
+Recipient: <%= User.find(r.recipient).username %> <br>
+Content: <%= r.content %> <br>
 <% end %>
 
 </html>
