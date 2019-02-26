@@ -6,10 +6,16 @@ Eizer Feb 5, 2019  Added methods under controller. Also added view constraints/
 
 class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
-  before_action :authenticate_user, :only => [:auth, :update_status, :destroy] #Can only be accessed by logged in users
+  before_action :authenticate_user, :only => [:auth, :update_status, :destroy, :show] #Can only be accessed by logged in users
 
   def show
 	  @user = User.find(params[:id]) #save the user instance inside @user
+    @v = Vote.where(:target => @user.id)
+    if @v.count != 0
+      @user.rating = (@v.where(:value => 1) / @v.count) * 100 #Calculate user rating
+    else
+      @user.rating = 0
+    end
     @f = Feedback.where(:recipient => @user.id, :t => "Feedback")
   end
 

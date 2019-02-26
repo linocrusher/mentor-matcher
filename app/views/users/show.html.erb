@@ -31,8 +31,13 @@
 First Name: <%= @user.firstname %> <br>
 Last Name: <%= @user.lastname %> <br>
 Address: <%= @user.address %> <br>
-Rating: <br>
+Rating: <%= @user.rating %> (<%= @v.count %>) 
 
+<% if @user != @current_user %>
+Upvote/Downvote/Remove
+<% end %>
+
+<br> 
 
 Comments: <br><br>
 
