@@ -4,7 +4,7 @@ Code History:
 Eizer Feb 25, 2019  Added feedback controller/
 
 class FeedbacksController < ApplicationController
-	before_action :authenticate_user, :only => [:new, :create, :destroy]
+	before_action :authenticate_user, :only => [:new, :create, :destroy, :index]
 
 	def new
 		@feedback = Feedback.new
