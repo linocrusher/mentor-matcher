@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225094509) do
+ActiveRecord::Schema.define(version: 20190226062825) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string "t"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20190225094509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expires"
+    t.float "rating"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "voter"
+    t.integer "target"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

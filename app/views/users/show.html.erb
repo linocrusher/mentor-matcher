@@ -33,6 +33,14 @@ Last Name: <%= @user.lastname %> <br>
 Address: <%= @user.address %> <br>
 Rating: <br>
 
+
+Comments: <br><br>
+
+<% @f.each do |f| %>
+Sender: <%= User.find(f.sender).username %> <br>
+Content: <%= f.content %><br><br>
+<% end %>
+
 <% end %>
 
 </html>

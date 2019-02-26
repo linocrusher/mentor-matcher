@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
 	  @user = User.find(params[:id]) #save the user instance inside @user
+    @f = Feedback.where(:recipient => @user.id, :t => "Feedback")
   end
 
   def new
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-
+    @user.rating = 0
   	if @user.save
   		redirect_to @user #Should redirect to Success Prompt Page / Session create page
   	else

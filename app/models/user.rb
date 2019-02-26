@@ -2,8 +2,7 @@
 Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Added user model
-Eizer Feb 2, 2019  Added validations and functions
-Eizer Feb 18, 2019 Added isexpired method/
+Eizer Feb 2, 2019  Added validations and functions/
 
 class User < ApplicationRecord
 	before_create :encrypt_password

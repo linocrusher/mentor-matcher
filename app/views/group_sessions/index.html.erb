@@ -75,7 +75,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                                 <%= link_to 'Profile', user_path(@current_user.id), class: 'drp-btn' %>
                             </li>
                             <li>
-                                <%= link_to 'Rate and Comment/Report User', new_feedback_path, class: 'drp-btn' %>
+                                <%= link_to 'Provide Feedback/Report User', new_feedback_path, class: 'drp-btn' %>
                             </li>
                             <li>
                                 <%= button_to 'Deactivate Account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'drp-btn'  %>
