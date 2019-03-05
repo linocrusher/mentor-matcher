@@ -98,6 +98,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
         <div class="container">
             <div class="title centered">Available Sessions</div>
             <div class="view centered">
+                <div class="scrolly">
                 <table class="rows-space">
                     <% @group_sessions.each do |group_session| %>
                         <tr id="sessions">
@@ -119,6 +120,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                         </tr>
                     <% end %>
                 </table>
+                </div>
             </div>
         </div>
     </div>

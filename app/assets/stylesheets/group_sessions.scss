@@ -300,6 +300,34 @@ li {
   text-decoration: none;
 }
 
+/* view sessions scrollbar */
+
+.scrolly {
+  padding: 15px;
+  padding-top: 0px;
+  overflow-y: auto;
+  height: 400px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: gray;
+  box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cec3c3;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
 /* create session */
 
 .centered {
