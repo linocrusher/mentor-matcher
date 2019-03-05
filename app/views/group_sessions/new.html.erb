@@ -95,16 +95,18 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                     <div class="title centered">Create a Study Session</div>
 
                     <!Error printing>
-                    <% if @group_session.errors.any? %>
-                        <div id="error_explanation">
-                        <ul>
-                            <% @group_session.errors.full_messages.each do |msg| %>
-                            <li><%= msg %></li>
-                            <% end %>
-                        </ul>
-                        </div>
-                    <% end %>
                     
+                    <% if @group_session.errors.any? %>
+                    <div class="err-msg"> 
+                        <div id="error_explanation">
+                            <% @group_session.errors.full_messages.each do |msg| %>
+                            <i class="fa far fa-times">&nbsp&nbsp&nbsp</i><%= msg %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <% end %>
+                   
+
                     <div class="createsession">
                         <div class="centered input-field">
                             <span class="icon fa fal fa-book-open">
@@ -114,21 +116,22 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                         <br>
                         
                         <div class="centered input-field" id="sched">
-                            <%= form.datetime_select :schedule, class: 'input-session', placeholder: 'Schedule', required: true, autofocus: true %>
-                            <!--span class="icon fas fa-clock">
-                            <%= form.text_field :schedule, placeholder: 'Schedule',
-                            :id => 'datetimepicker5', 
-                            :class => "input-session", 
-                            data: {toggle: "datetimepicker", target: "#datetimepicker5"} %>
-                            </span-->
+                            <span class="centered circle">
+                            <div class="column left"><i class="fas fa-clock"></i></div>
+                            <div class="column right" id="txt"><h id="sched-placeholder">Schedule</h></div>
+                            <div class="myDIV default-sched column right" id="input-sched"><%= form.datetime_select :schedule, required: true, autofocus: true %></div>
+                            </span>
                         </div>
 
-                        <!--<script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker5').datetimepicker();
-                            });
-                            $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, { icons: { time: 'fas fa-clock', date: 'fas fa-calendar', up: 'fas fa-arrow-up', down: 'fas fa-arrow-down', previous: 'fas fa-arrow-left', next: 'fas fa-arrow-right', today: 'fas fa-arrow-right', clear: 'far fa-trash', close: 'far fa-times' } });
-                        </script-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>            
+                        <script>
+                        $(document).ready(function(){
+                        $("#txt").click(function(){
+                            $("#input-sched").show();
+                            $("#txt").hide();
+                        });
+                        });
+                        </script>
 
                         <br>
                         <div class="centered input-field">
