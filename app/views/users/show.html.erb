@@ -28,23 +28,58 @@
 
 <% else %>
 
-First Name: <%= @user.firstname %> <br>
-Last Name: <%= @user.lastname %> <br>
-Address: <%= @user.address %> <br>
-Rating: <%= @user.rating %> (<%= @v.count %>) 
+    First Name: <%= @user.firstname %> <br>
+    Last Name: <%= @user.lastname %> <br>
+    Address: <%= @user.address %> <br>
+    Rating: <%= @user.rating %> (<%= @v.count %>) 
 
-<% if @user != @current_user %>
-Upvote/Downvote/Remove
-<% end %>
+    <% if @user != @current_user %>
+        <% if @uv.count != 0 %>
+            <% if @uv.values == 1 %>
+                <%= form_with model: @user, local: true do |form| %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
+                    <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
+                <% end %>
+            <% elsif @uv.values == -1 %>
+                <%= form_with model: @user, local: true do |form| %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
+                    <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
+                <% end %>
+            <% end %>
+                <%= form_with model: @user, local: true do |form| %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= hidden_field_tag :value, 0 %> <!-- Pass the resource id to r_id -->
+                    <%= form.submit 'Remove Vote', class: 'btn btn-sm btn-outline-secondary' %>
+                <% end %>
+        <% end %>
 
-<br> 
+        <% if @uv.count == 0 %>
 
-Comments: <br><br>
+            <%= form_with model: @user, local: true do |form| %>
+                <%= hidden_field_tag :id, @user.id %>
+                <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
+                <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
+            <% end %>
 
-<% @f.each do |f| %>
-Sender: <%= User.find(f.sender).username %> <br>
-Content: <%= f.content %><br><br>
-<% end %>
+            <%= form_with model: @user, local: true do |form| %>
+                <%= hidden_field_tag :id, @user.id %>
+                <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
+                <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
+            <% end %>
+
+        <% end %>
+    <% end %>
+
+    <br> 
+
+    Comments: <br><br>
+
+    <% @f.each do |f| %>
+    Sender: <%= User.find(f.sender).username %> <br>
+    Content: <%= f.content %><br><br>
+    <% end %>
 
 <% end %>
 
