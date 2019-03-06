@@ -8,31 +8,47 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "users" %>
+    <%= stylesheet_link_tag "group_sessions" %>
 </head>
 
-<%= form_for @feedback, local: true do |form| %>
+<body>
 
-  <%= form.hidden_field :sender, value: @current_user.id %>
- 
-  <p>
-  	<%= form.label :type %> <br>
-  	<%= form.select :t, ['Feedback', 'Report'] %>
-  </p>
+    <header>
+      <%= render 'group_sessions/sidebar' %>
+    </header>
 
-  <p>
-  	<%= form.label :recipient %> <br>
-  	<%= form.collection_select(:recipient, @r, :id, :username) %>
-  </p>
+<!--MAIN-->
+    <div class="wrapper">
+        <div class="container">
+            <div class="title centered">Feedback/Report</div>
+            <div class="feedback centered">
+            <%= form_for @feedback, local: true do |form| %>
 
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+              <%= form.hidden_field :sender, value: @current_user.id %>
+            
+              <div>
+                <%= form.label :type %> <br>
+                <%= form.select :t, ['Feedback', 'Report'] %>
+              </div>
+
+              <div>
+                <%= form.label :recipient %> <br>
+                <%= form.collection_select(:recipient, @r, :id, :username) %>
+              </div>
+
+              <div>
+                <%= form.label :content %><br>
+                <%= form.text_area :content, class: 'text-area' %>
+              </div>
+            
+              <div>
+                
+                <%= form.submit('Submit', class: "save-button") %>
+              </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</body>
 
 </html>
