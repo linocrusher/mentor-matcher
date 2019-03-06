@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "group_sessions" %>
+</head>    
+
+<body>
+
+    <div class="main-overlay"></div>
+    <div class="overlay"></div>
+
+    <!-- MENU BAR CONTENTS -->
+
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="sidebar-header">
+            <h3>Mentor Matcher</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <%= button_to 'Create Session', {controller: 'group_sessions', action: 'new'}, :class=>'btn wbtn'  %>
+            </li>
+            <li>
+                <%= link_to 'View Sessions', group_sessions_path, class: "wbtn"%>
+            </li>
+            <li>
+                <% if @current_user.status == "admin" %>
+                <%= button_to 'Manage User Accounts', { controller: 'users', action: 'auth'}, :class=>'btn wbtn' %>
+                <% end %>
+            </li>
+            <li>
+                <% if @current_user.status == "admin" %>
+                    <%= link_to 'View User Reports', feedbacks_path, :class=>'btn wbtn' %>
+                <% end %>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!-- FIXED HEADER -->
+        
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid text-center">
+            <div class="menu-btn" id="sidebarCollapse" role="button">
+                <i class="fa fa-list"></i>
+            </div>
+            
+            <div class="navbar-nav navbar-center">
+                <img src="/assets/logo.png" class="logo">&nbsp>&nbsp>&nbsp
+                Mentor Matcher
+            </div>
+            
+            <div class="user collapse navbar-collapse">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="dropdown">
+                        <div data-toggle="dropdown">
+                            <span role="button"><i class="fa fa-user-circle"></i></span>
+                            <span class="username" role="button"><%=@current_user.username%></span>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <%= link_to 'Profile', user_path(@current_user.id), class: 'drp-btn' %>
+                            </li>
+                            <li>
+                                <%= link_to 'Provide Feedback/Report User', new_feedback_path, class: 'drp-btn' %>
+                            </li>
+                            <li>
+                                <%= button_to 'Deactivate Account', user_path(@current_user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'drp-btn'  %>
+                            </li>
+                            <li>
+                                <%= form_tag(controller: 'sessions', :action => 'logout') do %>
+                                <%= submit_tag("Log Out", :class=>"drp-btn", :name=>"submit") %>
+                                <% end %>
+                            </li>
+                        </ul>
+				    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+                                    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
