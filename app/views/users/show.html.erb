@@ -8,79 +8,102 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "users" %>
+    <%= stylesheet_link_tag "group_sessions" %>
 </head>
 
-<% if session[:user_id] == nil %> 
-    <body>
-        <div class="overlay"></div>
+<body>
+    <header>
+      <%= render 'group_sessions/sidebar' %>
+    </header>
 
-        <div class="msg centered text-center">
-            <strong>
-            Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
-            </strong>
-        </div>
+    <div class="wrapper">
+        <div class="container">    
+            <div class="centered">
+                <% if session[:user_id] == nil %> 
 
-        <div class="text-center">
-        <%= link_to 'Back to homepage', home_index_path %>
-        </div>
-    </body>
+                        <div class="overlay"></div>
 
-<% else %>
+                        <div class="msg centered text-center">
+                            <strong>
+                            Your account has been created, we are now verifying your credentials. <br>Please wait for the authentication.
+                            </strong>
+                        </div>
 
-    First Name: <%= @user.firstname %> <br>
-    Last Name: <%= @user.lastname %> <br>
-    Address: <%= @user.address %> <br>
-    Rating: <%= @user.rating %> (<%= @v.count %>) 
+                        <div class="text-center">
+                        <%= link_to 'Back to homepage', home_index_path %>
+                        </div>
 
-    <% if @user != @current_user %>
-        <% if @uv.count != 0 %>
-            <% if @uv.values == 1 %>
-                <%= form_with model: @user, local: true do |form| %>
-                    <%= hidden_field_tag :id, @user.id %>
-                    <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
-                    <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
+
+                <% else %>
+                    <div class="column l profile">
+                    <li><h1><%= @user.firstname %> <%= @user.lastname %></h1></li>
+                    <li><p><%= @user.address %></p></li> <br><br>
+                    <li><h3>Rating: <%= @user.rating %> (<%= @v.count %>)</h3></li>  
+                    
+
+                    <% if @user != @current_user %>
+                        <% if @uv.count != 0 %>
+                            <div class="centered form-inline">
+                            <% if @uv.values == 1 %>
+                                <%= form_with model: @user, local: true do |form| %>
+                                    <%= hidden_field_tag :id, @user.id %>
+                                    <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
+                                    <%= form.submit 'Downvote', class: 'btn btn-sm' %>
+                                <% end %>
+                            <% elsif @uv.values == -1 %>
+                                <%= form_with model: @user, local: true do |form| %>
+                                    <%= hidden_field_tag :id, @user.id %>
+                                    <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
+                                    <%= form.submit 'Upvote', class: 'btn btn-sm' %>
+                                <% end %>
+                            
+                            <% end %>
+                                <%= form_with model: @user, local: true do |form| %>
+                                    <%= hidden_field_tag :id, @user.id %>
+                                    <%= hidden_field_tag :value, 0 %> <!-- Pass the resource id to r_id -->
+                                    <%= form.submit 'Remove Vote', class: 'btn btn-sm btn-outline-secondary' %>
+                                <% end %>
+                            </div>
+                        <% end %>
+
+                        <% if @uv.count == 0 %>
+                            <div class="centered form-inline">            
+                            <%= form_with model: @user, local: true do |form| %>
+                                <%= hidden_field_tag :id, @user.id %>
+                                <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
+                                <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
+                            <% end %>
+
+                            <%= form_with model: @user, local: true do |form| %>
+                                <%= hidden_field_tag :id, @user.id %>
+                                <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
+                                <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
+                            <% end %>
+                            </div>   
+                        <% end %>
+                    <% end %>
+                    </div>               
+                    <br> 
+                    <div class="column r comment-sect scrolly">                
+                    <p>Comments:</p>
+
+                    <% @f.each do |f| %>
+                    <strong><i class="far fa-user"></i> <%= User.find(f.sender).username %>:</strong>
+                    <p><%= f.content %></p>
+                    <% end %>
+                    </div>
+
                 <% end %>
-            <% elsif @uv.values == -1 %>
-                <%= form_with model: @user, local: true do |form| %>
-                    <%= hidden_field_tag :id, @user.id %>
-                    <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
-                    <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
-                <% end %>
-            <% end %>
-                <%= form_with model: @user, local: true do |form| %>
-                    <%= hidden_field_tag :id, @user.id %>
-                    <%= hidden_field_tag :value, 0 %> <!-- Pass the resource id to r_id -->
-                    <%= form.submit 'Remove Vote', class: 'btn btn-sm btn-outline-secondary' %>
-                <% end %>
-        <% end %>
+            </div> 
+        </div> 
+    </div>            
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-        <% if @uv.count == 0 %>
-
-            <%= form_with model: @user, local: true do |form| %>
-                <%= hidden_field_tag :id, @user.id %>
-                <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
-                <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
-            <% end %>
-
-            <%= form_with model: @user, local: true do |form| %>
-                <%= hidden_field_tag :id, @user.id %>
-                <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
-                <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
-            <% end %>
-
-        <% end %>
-    <% end %>
-
-    <br> 
-
-    Comments: <br><br>
-
-    <% @f.each do |f| %>
-    Sender: <%= User.find(f.sender).username %> <br>
-    Content: <%= f.content %><br><br>
-    <% end %>
-
-<% end %>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>

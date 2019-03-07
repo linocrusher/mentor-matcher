@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 /* background */
 
@@ -600,5 +601,71 @@ li {
 /* profile */
 
 .profile {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-size: 18px;
+  text-align: center;
+  width: fit-content;
+  font-family: "Varela Round", sans-serif;
+  padding: 15px;
+  padding-top: 4vw;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.profile h1 {
+  font-size: 2.5vw;
+  text-align: Center;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+}
+
+.profile h3 {
+  font-size: 30px;
+  text-align: Center;
+}
+
+.profile p {
+  font-size: 18px;
+}
+
+.comment-sect {
+  background-color: rgba(120, 67, 156, 0.9);
+  color: black;
+  font-size: 18px;
+  padding: 30px;
+  width: fit-content;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-family: "Nunito", sans-serif;
+}
+
+.comment-sect p {
   color: white;
+}
+
+.l {
+  /*width: 10em;
+  font-weight: bold;*/
+  margin-top: 15%;
+  width: 20em;
+  height: 20em;
+}
+
+.r {
+  /*text-align: right;
+  float: right;*/
+  margin-top: 15%;
+  width: 20em;
+  height: 20em;
+  overflow-wrap: break-word;
+}
+
+.profile .btn {
+  font-size: 13px;
+  font-weight: bold;
+  height: fit-content;
+  color: black;
 }
