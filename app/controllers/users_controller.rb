@@ -3,22 +3,29 @@ Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Added user controller
 Eizer Feb 5, 2019  Added methods under controller. Also added view constraints
-Eizer Mar 6, 2019, Added update method for vote calculation/
+Eizer Mar 6, 2019, Added update method for vote calculation
+Eizer Mar 15, 2019, Fixed redirects/
 
 class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
   before_action :authenticate_user, :only => [:auth, :update_status, :destroy, :show, :update] #Can only be accessed by logged in users
+  skip_before_action :verify_authenticity_token
 
   def show
-	  @user = User.find(params[:id]) #save the user instance inside @user
-    @v = Vote.where(:target => @user.id)
-    if @v.count != 0
-      @user.rating = (@v.where(:value => 1).count.to_f / @v.count.to_f) * 100 #Calculate user rating
+    if params[:id] == "auth"
+      @unauthlist = User.where( :status => nil )
+      render 'auth'
     else
-      @user.rating = 0
+  	  @user = User.find(params[:id]) #save the user instance inside @user
+      @v = Vote.where(:target => @user.id)
+      if @v.count != 0
+        @user.rating = (@v.where(:value => 1).count.to_f / @v.count.to_f) * 100 #Calculate user rating
+      else
+        @user.rating = 0
+      end
+      @uv = Vote.where(:voter => @current_user.id, :target => @user.id)
+      @f = Feedback.where(:recipient => @user.id, :t => "Feedback")
     end
-    @uv = Vote.where(:voter => @current_user.id, :target => @user.id)
-    @f = Feedback.where(:recipient => @user.id, :t => "Feedback")
   end
 
   def new
@@ -36,13 +43,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @links = Link.where(:user_id => @user.id)
+    if params[:id] ==  "update_status"
+      @user = User.where(:username => params[:user][:username])
+      puts params[:user][:username]
+    else
+      @user = User.find(params[:id])
+    end
+    @links = Link.where(:user_id => @user.ids)
     @links.destroy_all
-    @user.destroy
-    /Logout/
-    session[:user_id] = nil
-    redirect_to home_index_path
+    @user.destroy_all
+    /Logout if own account/
+    if(@current_user.id == params[:id])
+      session[:user_id] = nil
+      redirect_to home_index_path
+    end
+    redirect_to users_auth_path
   end
 
   def auth

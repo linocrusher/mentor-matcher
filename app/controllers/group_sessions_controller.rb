@@ -11,7 +11,8 @@ class GroupSessionsController < ApplicationController
 	end
 
 	def create
-  	  	@group_session = GroupSession.new(group_session_params)
+  	  @group_session = GroupSession.new(group_session_params)
+
   		if @group_session.save
   			#render 'index'
   			redirect_to group_sessions_path
