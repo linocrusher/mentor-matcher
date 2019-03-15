@@ -36,7 +36,7 @@
                                         </td>
                                     <% else %>
                                         <td>
-                                        <%= form.submit value: "Renew User", class: "button" %>
+                                        <%= form.submit value: "Renew", class: "button" %>
                                         </td>
                                     <% end %>
                                       <td>
@@ -50,6 +50,27 @@
                 </table>
             </div>
         </div>
+        <div class="title centered">Regular Users</div>
+        <div class="view centered">
+            <table class="rows-space">
+               <% @authlist.each do |user| %>
+                    <tr id="users" >
+                        <td>
+                            <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+                            <%= user.lastname %>,
+                            <%= user.firstname %>
+                            <%= form.hidden_field :username, value: user.username %>
+                              <td>
+                                <%= form.submit value: "Unauthenticate", class: "button" %>
+                              </td>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <br>
+                <% end %>
+            </table>
+        </div>
+    </div>
     </div>
 
 

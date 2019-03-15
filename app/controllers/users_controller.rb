@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     if params[:id] == "auth"
       @unauthlist = User.where( :status => nil )
+      @authlist = User.where.not( :status => nil, :id => @current_user.id)
       render 'auth'
     else
   	  @user = User.find(params[:id]) #save the user instance inside @user
@@ -43,32 +44,45 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if params[:id] ==  "update_status"
-      @user = User.where(:username => params[:user][:username])
-      puts params[:user][:username]
+    if params[:commit] == "Authenticate" or params[:commit] == "Renew"
+        @user = User.where( :username => user_params[:username] )
+        @user.update( :status => "regular" )
+        if @user[0][:expires] == nil or @user[0][:expires] < DateTime.now
+          @user.update( :expires => (DateTime.now + 5.months) )
+        end
     else
-      @user = User.find(params[:id])
-    end
-    @links = Link.where(:user_id => @user.ids)
-    @links.destroy_all
-    @user.destroy_all
-    /Logout if own account/
-    if(@current_user.id == params[:id])
-      session[:user_id] = nil
-      redirect_to home_index_path
+      if params[:id] ==  "update_status"
+        @user = User.where(:username => params[:user][:username])
+        puts params[:user][:username]
+      else
+        @user = User.find(params[:id])
+      end
+      @links = Link.where(:user_id => @user.ids)
+      @links.destroy_all
+      @user.destroy_all
+      /Logout if own account/
+      if(@current_user.id == params[:id])
+        session[:user_id] = nil
+        redirect_to home_index_path
+      end
     end
     redirect_to users_auth_path
   end
 
   def auth
     @unauthlist = User.where( :status => nil )
+    @authlist = User.where.not( :status => nil, :id => @current_user.id)
   end
 
   def update_status
     @user = User.where( :username => user_params[:username] )
-    @user.update( :status => "regular" )
-    @user.update( :expires => (DateTime.now + 5.months) )
-    redirect_to group_sessions_path
+    if params[:commit] == "Unauthenticate"
+      @user.update( :status => nil )
+    else
+      @user.update( :status => "regular" )
+      @user.update( :expires => (DateTime.now + 5.months) )
+    end
+    redirect_to users_auth_path
   end
 
   def update
