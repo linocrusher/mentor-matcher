@@ -4,7 +4,7 @@ Code History:
 Eizer Jan 30, 2019  Added user controller
 Eizer Feb 5, 2019  Added methods under controller. Also added view constraints
 Eizer Mar 6, 2019, Added update method for vote calculation
-Eizer Mar 15, 2019, Fixed redirects/
+Eizer Mar 15, 2019, Deleting accounts also delete feedbacks/
 
 class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
@@ -59,6 +59,10 @@ class UsersController < ApplicationController
       end
       @links = Link.where(:user_id => @user.ids)
       @links.destroy_all
+      @sent = Feedback.where(:sender => @user.ids)
+      @sent.destroy_all
+      @received = Feedback.where(:recipient => @user.ids)
+      @received.destroy_all
       @user.destroy_all
       /Logout if own account/
       if(@current_user.id == params[:id])

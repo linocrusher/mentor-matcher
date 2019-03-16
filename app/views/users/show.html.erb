@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "group_sessions" %>
@@ -17,9 +17,9 @@
     </header>
 
     <div class="wrapper">
-        <div class="container">    
+        <div class="container">
             <div class="centered">
-                <% if session[:user_id] == nil %> 
+                <% if session[:user_id] == nil %>
 
                         <div class="overlay"></div>
 
@@ -38,8 +38,11 @@
                     <div class="column l profile">
                     <li><h1><%= @user.firstname %> <%= @user.lastname %></h1></li>
                     <li><p><%= @user.address %></p></li> <br><br>
-                    <li><h3>Rating: <%= @user.rating %> (<%= @v.count %>)</h3></li>  
-                    
+                    <li><h3>Rating: <%= @user.rating %> (<%= @v.count %>)</h3></li>
+                    <% if @current_user.status == "admin" and @user.status != "admin" %>
+                      <li>Expires at: <%= @user.expires.strftime("%m/%d/%Y %I:%M %p") %></li>
+                    <% end %>
+
 
                     <% if @user != @current_user %>
                         <% if @uv.count != 0 %>
@@ -56,7 +59,7 @@
                                     <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
                                     <%= form.submit 'Upvote', class: 'btn btn-sm' %>
                                 <% end %>
-                            
+
                             <% end %>
                                 <%= form_with model: @user, local: true do |form| %>
                                     <%= hidden_field_tag :id, @user.id %>
@@ -67,7 +70,7 @@
                         <% end %>
 
                         <% if @uv.count == 0 %>
-                            <div class="centered form-inline">            
+                            <div class="centered form-inline">
                             <%= form_with model: @user, local: true do |form| %>
                                 <%= hidden_field_tag :id, @user.id %>
                                 <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
@@ -79,12 +82,12 @@
                                 <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->
                                 <%= form.submit 'Downvote', class: 'btn btn-sm btn-outline-secondary' %>
                             <% end %>
-                            </div>   
+                            </div>
                         <% end %>
                     <% end %>
-                    </div>               
-                    <br> 
-                    <div class="column r comment-sect scrolly">                
+                    </div>
+                    <br>
+                    <div class="column r comment-sect scrolly">
                     <p>Comments:</p>
 
                     <% @f.each do |f| %>
@@ -94,9 +97,9 @@
                     </div>
 
                 <% end %>
-            </div> 
-        </div> 
-    </div>            
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
