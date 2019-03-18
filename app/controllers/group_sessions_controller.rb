@@ -16,10 +16,7 @@ class GroupSessionsController < ApplicationController
   	  @group_session = GroupSession.new(group_session_params)
 
   		if @group_session.save
-  			#render 'index'
-        @own = Owner.new(:user_id => @current_user.id, :group_session_id => @group_session.id)
         @link = Link.new(:user_id => @current_user.id, :group_session_id => @group_session.id)
-        @own.save
         @link.save
   			redirect_to group_sessions_path
   		else
@@ -29,8 +26,6 @@ class GroupSessionsController < ApplicationController
 
   def destroy
     @gs = GroupSession.find(params[:id])
-    @own = Owner.where(:group_session_id => @gs.id)
-    @own.destroy_all
     @link = Link.where(:group_session_id => @gs.id)
     @link.destroy_all
     @gs.destroy
@@ -66,6 +61,6 @@ class GroupSessionsController < ApplicationController
 
 	private
 	def group_session_params #For strong parameters
-		params.require(:group_session).permit(:subject, :schedule, :venue, :topic, :username, :group_session, :type)
+		params.require(:group_session).permit(:subject, :schedule, :venue, :topic, :username, :group_session, :type, :user_id)
 	end
 end

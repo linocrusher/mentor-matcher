@@ -26,7 +26,7 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
     </header>
 
     <!--MAIN-->
- 
+
     <div class="wrapper">
         <div class="container">
             <div>
@@ -34,9 +34,9 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                     <div class="title centered">Create a Study Session</div>
 
                     <!Error printing>
-                    
+
                     <% if @group_session.errors.any? %>
-                    <div class="err-msg"> 
+                    <div class="err-msg">
                         <div id="error_explanation">
                             <% @group_session.errors.full_messages.each do |msg| %>
                             <i class="fa far fa-times">&nbsp&nbsp&nbsp</i><%= msg %>
@@ -44,7 +44,8 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                         </div>
                     </div>
                     <% end %>
-                   
+
+                    <%= form.hidden_field :user_id, value: @current_user.id %>
 
                     <div class="createsession">
                         <div class="centered input-field">
@@ -53,7 +54,7 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                             </span>
                         </div>
                         <br>
-                        
+
                         <div class="centered input-field" id="sched">
                             <span class="centered circle">
                             <div class="column left"><i class="fas fa-clock"></i></div>
@@ -62,7 +63,7 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
                             </span>
                         </div>
 
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>            
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                         <script>
                         $(document).ready(function(){
                         $("#txt").click(function(){
@@ -102,7 +103,7 @@ Sophia - 2/6/2019 - Added frontend for create sessions page
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

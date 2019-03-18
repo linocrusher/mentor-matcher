@@ -73,11 +73,20 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 </td>
                 </tr>
 
+                <tr>
+                <td><i class="fas fa-users"></i></td>
+                <td>
+                <li class="label">Creator:</li>
+                <% creator = User.find(@group_session.user_id)%>
+                <%= link_to creator.firstname + " " + creator.lastname, user_path(@group_session.user_id) %></li>
+                </td>
+                </tr>
+
                 </table>
                 <%= form_with model: @group_session, local: true do |form| %>
                     <%= form.hidden_field :id, value: @group_session.id %>
                         <% if @members.where(:user_id => @current_user.id).exists? %> <!User in member list>
-                          <% if Owner.where(:user_id => @current_user.id, :group_session_id => @group_session.id).count == 0 %> <!Owner must not be able to leave the session>
+                          <% if @group_session.user_id != @current_user.id %> <!Owner must not be able to leave the session>
                             <div class="centered">
                             <button type="button" class="join-btn" data-toggle="modal" data-target="#leave">
                             Leave
