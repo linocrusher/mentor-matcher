@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   post 'users/update_status'
 
+  post 'feedbacks/new'
+
   resources :users
 
   resources :group_sessions

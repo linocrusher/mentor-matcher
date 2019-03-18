@@ -8,7 +8,12 @@ class FeedbacksController < ApplicationController
 
 	def new
 		@feedback = Feedback.new
-		@r = User.where.not(:id => @current_user.id)
+
+		if params[:id] == nil
+			@r = User.where.not(:id => @current_user.id)
+		else
+			@ru = User.find(params[:id].to_i)
+		end
 	end
 
 	def create
@@ -32,6 +37,6 @@ class FeedbacksController < ApplicationController
 
 	private
 	def feedback_params #For strong parameters
-		params.require(:feedback).permit(:sender, :recipient, :t, :content)
+		params.require(:feedback).permit(:sender, :recipient, :t, :content, :id)
 	end
 end

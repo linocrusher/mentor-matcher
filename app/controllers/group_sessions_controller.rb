@@ -34,7 +34,12 @@ class GroupSessionsController < ApplicationController
   end
 
 	def index
-		@group_sessions = GroupSession.all
+    @view = params[:view]
+    if @view == "user"
+      @group_sessions = GroupSession.where(:user_id => @current_user.id)
+    else
+      @group_sessions = GroupSession.all
+    end
 	end
 
 	def show
@@ -61,6 +66,6 @@ class GroupSessionsController < ApplicationController
 
 	private
 	def group_session_params #For strong parameters
-		params.require(:group_session).permit(:subject, :schedule, :venue, :topic, :username, :group_session, :type, :user_id)
+		params.require(:group_session).permit(:subject, :schedule, :venue, :topic, :username, :group_session, :type, :user_id, :view)
 	end
 end

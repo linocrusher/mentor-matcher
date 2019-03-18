@@ -23,9 +23,21 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
 
     <!--MAIN-->
 
+
+
     <div class="wrapper">
         <div class="container">
             <div class="title centered">Available Sessions</div>
+            <% if @view == "user" %>
+                    <%= form_tag(group_sessions_path, method: :get) do %>
+                    <%= submit_tag 'All Sessions', class: 'no-btn nav-link' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_tag(group_sessions_path, method: :get) do %>
+                    <%= hidden_field_tag :view, "user" %>
+                    <%= submit_tag 'My Sessions', class: 'no-btn nav-link' %>
+                    <% end %>
+            <% end %>
             <div class="view centered">
                 <div class="scrolly">
                 <table class="rows-space">
