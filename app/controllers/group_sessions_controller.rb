@@ -3,10 +3,11 @@ Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Added group sessions controller
 Eizer Feb 3, 2019  Added methods and view constraint
-Eizer Mar 15, 2019  Code Refactoring/
+Eizer Mar 15, 2019  Code Refactoring
+Eizer Mar 18, 2019  Added delete method/
 
 class GroupSessionsController < ApplicationController
-  before_action :authenticate_user, :only => [:new, :create, :index, :update, :show] #Can only be accessed by logged in users
+  before_action :authenticate_user, :only => [:new, :create, :index, :update, :show, :destroy] #Can only be accessed by logged in users
 	def new
 		@group_session = GroupSession.new
 	end
@@ -16,11 +17,26 @@ class GroupSessionsController < ApplicationController
 
   		if @group_session.save
   			#render 'index'
+        @own = Owner.new(:user_id => @current_user.id, :group_session_id => @group_session.id)
+        @link = Link.new(:user_id => @current_user.id, :group_session_id => @group_session.id)
+        @own.save
+        @link.save
   			redirect_to group_sessions_path
   		else
   			render 'new'
   		end
 	end
+
+  def destroy
+    @gs = GroupSession.find(params[:id])
+    @own = Owner.where(:group_session_id => @gs.id)
+    @own.destroy_all
+    @link = Link.where(:group_session_id => @gs.id)
+    @link.destroy_all
+    @gs.destroy
+
+    redirect_to group_sessions_path
+  end
 
 	def index
 		@group_sessions = GroupSession.all

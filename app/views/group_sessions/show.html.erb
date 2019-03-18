@@ -11,7 +11,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "group_sessions" %>
 </head>
@@ -23,7 +23,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
     </header>
 
     <!--MAIN-->
- 
+
     <div class="wrapper">
         <div class="container centered">
             <div class="session-info">
@@ -35,9 +35,9 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 <li><%= @group_session.subject %></li>
                 </td>
                 </tr>
-                                    
-                
-                <tr>                        
+
+
+                <tr>
                 <td><i class="fas fa-clock"></i></td>
                 <td>
                 <li class="label">Schedule:</li>
@@ -45,7 +45,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 </td>
                 </tr>
 
-                <tr>                        
+                <tr>
                 <td><i class="fas fa-building"></i></td>
                 <td>
                 <li class="label">Venue:</li>
@@ -53,7 +53,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 </td>
                 </tr>
 
-                <tr>                        
+                <tr>
                 <td><i class="fas fa-lightbulb"></i></td>
                 <td>
                 <li class="label">Topic:</li>
@@ -61,7 +61,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 </td>
                 </tr>
 
-                <tr>                        
+                <tr>
                 <td><i class="fa far fa-users"></i></td>
                 <td>
                 <li class="label">Members:</li>
@@ -72,16 +72,22 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                 <% end %>
                 </td>
                 </tr>
-                
+
                 </table>
                 <%= form_with model: @group_session, local: true do |form| %>
                     <%= form.hidden_field :id, value: @group_session.id %>
                         <% if @members.where(:user_id => @current_user.id).exists? %> <!User in member list>
+                          <% if Owner.where(:user_id => @current_user.id, :group_session_id => @group_session.id).count == 0 %> <!Owner must not be able to leave the session>
                             <div class="centered">
                             <button type="button" class="join-btn" data-toggle="modal" data-target="#leave">
                             Leave
                             </button>
                             </div>
+                          <% else %>
+
+                            <%= button_to 'Delete Group Session', group_session_path(@group_session), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+                          <% end %>
                         <% else %>
                             <div class="centered">
                             <button type="button" class="join-btn" data-toggle="modal" data-target="#join">
@@ -89,6 +95,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                             </button>
                             </div>
                         <% end %>
+
 
 <!-- Modal for Leave Session -->
 
@@ -105,13 +112,13 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                             Are you sure you want to leave this session?
                         </div>
                         <div class="modal-footer">
-                            <%= form.submit('Leave', class: "btn btn-primary") %>    
+                            <%= form.submit('Leave', class: "btn btn-primary") %>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                         </div>
                     </div>
-                </div>    
-                
+                </div>
+
 <!-- Modal for Join Session-->
 
                 <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinLabel" aria-hidden="true">
@@ -127,19 +134,20 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                             Are you sure you want to join this session?
                         </div>
                         <div class="modal-footer">
-                            <%= form.submit('Join', class: "btn btn-primary") %>    
+                            <%= form.submit('Join', class: "btn btn-primary") %>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                         </div>
                     </div>
-                </div>  
+                </div>
 
                 <% end %>
 
             </div>
         </div>
-        
+
     </div>
+
 
 
 

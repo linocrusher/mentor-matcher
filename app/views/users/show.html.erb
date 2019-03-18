@@ -39,7 +39,7 @@
                     <li><h1><%= @user.firstname %> <%= @user.lastname %></h1></li>
                     <li><p><%= @user.address %></p></li> <br><br>
                     <li><h3>Rating: <%= @user.rating %> (<%= @v.count %>)</h3></li>
-                    <% if @current_user.status == "admin" and @user.status != "admin" %>
+                    <% if (@current_user.status == "admin" or @current_user.id == @user.id) and @user.status != "admin" %>
                       <li>Expires at: <%= @user.expires.strftime("%m/%d/%Y %I:%M %p") %></li>
                     <% end %>
 
