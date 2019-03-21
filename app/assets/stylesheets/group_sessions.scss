@@ -233,6 +233,21 @@ a:focus {
   padding-left: 30px;
   padding-right: 30px;
 }
+
+.tabcontent {
+  display: none;
+}
+
+.tab button:focus {
+  outline: 0;
+}
+
+.tab button.active {
+  font-weight: bold;
+  color: White;
+  opacity: 1;
+}
+
 /* view sessions */
 
 .centered {
@@ -306,7 +321,7 @@ li {
   color: white;
   font-family: "Raleway", sans-serif;
   opacity: 0.5;
-  margin: auto;
+  margin: 0 0 0 0;
 }
 
 .inline:hover {

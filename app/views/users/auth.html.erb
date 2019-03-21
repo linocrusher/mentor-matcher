@@ -20,58 +20,95 @@
 
     <div class="wrapper">
         <div class="container">
-            <div class="title centered">Pending Users</div>
-            <div class="view centered">
-                <table class="rows-space">
-                   <% @unauthlist.each do |user| %>
-                        <tr id="users" >
-                            <td>
-                                <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
-                                <%= user.lastname %>,
-                                <%= user.firstname %>
-                                <%= form.hidden_field :username, value: user.username %>
-                                    <% if user.expires == nil %>
+            <div class="title centered">Manage User Accounts</div>
+
+            <!-- Navigation Tabs -->
+            <div class="centered tab">
+                <button class="btn-link inline tablinks" onclick="openTab(event, 'pending')" id="defaultOpen">Pending Users</button>
+                <p class="inline">&nbsp|&nbsp</p>
+                <button class="btn-link inline tablinks" onclick="openTab(event, 'regular')">Regular Users</button>
+            </div>
+
+            <!-- Pending Users Tab -->
+            <div id="pending" class="tabcontent">
+                <div class="view centered">
+                    <table class="rows-space">
+                        <% @unauthlist.each do |user| %>
+                            <tr id="users" >
+                                <td>
+                                    <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+                                    <%= user.lastname %>,
+                                    <%= user.firstname %>
+                                    <%= form.hidden_field :username, value: user.username %>
+                                        <% if user.expires == nil %>
+                                            <td>
+                                            <%= form.submit value: "Authenticate", class: "button" %>
+                                            </td>
+                                        <% else %>
+                                            <td>
+                                            <%= form.submit value: "Renew", class: "button" %>
+                                            </td>
+                                        <% end %>
                                         <td>
-                                        <%= form.submit value: "Authenticate", class: "button" %>
-                                        </td>
-                                    <% else %>
-                                        <td>
-                                        <%= form.submit value: "Renew", class: "button" %>
+                                            <%= button_to 'Deactivate', user_path(user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'button'  %>
                                         </td>
                                     <% end %>
-                                      <td>
-                                        <%= button_to 'Deactivate', user_path(user.id), method: :delete , data: { confirm: 'Are you sure?' },  :class=>'button'  %>
-                                      </td>
-                                <% end %>
-                            </td>
-                        </tr>
-                        <br>
-                    <% end %>
-                </table>
+                                </td>
+                            </tr>
+                            <br>
+                        <% end %>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="title centered">Regular Users</div>
-        <div class="view centered">
-            <table class="rows-space">
-               <% @authlist.each do |user| %>
-                    <tr id="users" >
-                        <td>
-                            <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
-                            <%= user.lastname %>,
-                            <%= user.firstname %>
-                            <%= form.hidden_field :username, value: user.username %>
-                              <td>
-                                <%= form.submit value: "Unauthenticate", class: "button" %>
-                              </td>
-                            <% end %>
-                        </td>
-                    </tr>
-                    <br>
-                <% end %>
-            </table>
+        
+            <!-- Regular Users Tab -->
+            <div id="regular" class="tabcontent">
+                <div class="view centered">
+                    <table class="rows-space">
+                        <% @authlist.each do |user| %>
+                            <tr id="users" >
+                                <td>
+                                    <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+                                    <%= user.lastname %>,
+                                    <%= user.firstname %>
+                                    <%= form.hidden_field :username, value: user.username %>
+                                    <td>
+                                        <%= form.submit value: "Unauthenticate", class: "button" %>
+                                    </td>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <br>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+
+            <!-- End of Tabs -->
         </div>
     </div>
-    </div>
+
+    <script>
+    function openTab(evt, userStatus) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        document.getElementById(userStatus).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    </script>
+    
+    <script>
+        document.getElementById("defaultOpen").click();
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
