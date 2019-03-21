@@ -93,9 +93,9 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                             </button>
                             </div>
                           <% else %>
-
-                            <%= button_to 'Delete Group Session', group_session_path(@group_session), method: :delete, data: { confirm: 'Are you sure?' } %>
-
+                            <div class="centered">
+                            <%= button_to 'Delete Session', group_session_path(@group_session), class: "join-btn", method: :delete, data: { confirm: 'Are you sure?' } %>
+                            </div>
                           <% end %>
                         <% else %>
                             <div class="centered">
