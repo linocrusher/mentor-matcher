@@ -6,6 +6,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Boogaloo");
 
 /* background */
 
@@ -369,12 +370,6 @@ li {
 
 /* create session */
 
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .title {
   font-size: 40px;
   font-weight: 100;
@@ -639,7 +634,7 @@ li {
 /* profile */
 
 .profile {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255);
   color: black;
   font-size: 18px;
   text-align: center;
@@ -652,25 +647,13 @@ li {
 }
 
 .profile h1 {
-  font-size: 2.5vw;
-  text-align: Center;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
-  padding-bottom: 0px;
-  margin-bottom: 10px;
-}
-
-.profile h3 {
-  font-size: 30px;
-  text-align: Center;
-}
-
-.profile p {
-  font-size: 18px;
+  font-family: "Boogaloo", cursive;
+  font-size: 50px;
+  color: #642c85;
 }
 
 .comment-sect {
-  background-color: rgba(120, 67, 156, 0.9);
+  background-color: #642c85;
   color: black;
   font-size: 18px;
   padding: 30px;
@@ -685,19 +668,15 @@ li {
 }
 
 .l {
-  /*width: 10em;
-  font-weight: bold;*/
   margin-top: 15%;
-  width: 20em;
-  height: 20em;
+  width: 35%;
+  height: 400px;
 }
 
 .r {
-  /*text-align: right;
-  float: right;*/
   margin-top: 15%;
-  width: 20em;
-  height: 20em;
+  width: 35%;
+  height: 400px;
   overflow-wrap: break-word;
 }
 
@@ -706,4 +685,31 @@ li {
   font-weight: bold;
   height: fit-content;
   color: black;
+}
+
+.link-btn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+.profile .btn-outline-secondary {
+  outline: none;
+  background-color: white;
+  border-radius: 20px;
+  color: #6f2699;
+  border-color: #642c85;
+  margin-top: 20px;
+}
+
+.profile .btn-outline-secondary:hover {
+  outline: none;
+  color: white;
+  background-color: #642c85;
+}
+
+.no-comments {
+  opacity: 0.5;
+  color: gray;
 }
