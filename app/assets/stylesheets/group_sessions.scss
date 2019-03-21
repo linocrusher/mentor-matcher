@@ -301,6 +301,29 @@ li {
   text-decoration: none;
 }
 
+.inline {
+  display: inline;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  opacity: 0.5;
+  margin: auto;
+}
+
+.inline:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.v-active {
+  font-weight: bold;
+  opacity: 1;
+}
+
+.btn-link {
+  border-style: none;
+  outline: none;
+}
+
 /* view sessions scrollbar */
 
 .scrolly {
