@@ -435,7 +435,7 @@ li {
 }
 
 .save-button {
-  font-size: 20px;
+  font-size: 22px;
   background-image: linear-gradient(
     to right,
     rgba(255, 51, 204, 0.5),
@@ -445,10 +445,11 @@ li {
   border-style: none;
   position: relative;
   height: 50px;
-  width: 320px;
+  width: 350px;
   text-align: center;
   color: white;
   outline: none;
+  letter-spacing: 1.2px;
 }
 
 .myDIV {
@@ -540,50 +541,30 @@ li {
 .session-info {
   color: white;
   margin-top: 10%;
-  background-color: rgba(87, 84, 84, 0.3);
-  border-radius: 15px;
-  padding: 15px;
-  padding-top: 3px;
-  border-width: 1px;
-  margin-bottom: 10px;
+  width: 37%;
 }
 
 .session-info i {
   color: white;
-  font-size: 30px;
+  font-size: 27px;
   width: 50px;
-  padding-right: 15px;
-}
-
-.session-info .rows-space {
-  border-spacing: 0 5px;
-}
-
-.session-info td {
-  background-color: transparent;
-  padding: 10px;
 }
 
 .session-info .join-btn {
-  font-size: 20px;
+  font-size: 21px;
   background-image: linear-gradient(
     to right,
-    rgba(255, 51, 204, 0.5),
+    rgba(255, 51, 204, 0.7),
     rgba(102, 102, 255, 1)
   );
   border-radius: 25px;
   border-style: none;
-  position: relative;
   height: 50px;
-  width: 200px;
   text-align: center;
   color: #ffffff;
   outline: none;
-}
-.label {
-  font-size: 20px;
-  color: rgb(231, 134, 255);
-  font-weight: 400;
+  width: 100%;
+  letter-spacing: 1.5px;
 }
 
 .modal {
@@ -592,6 +573,33 @@ li {
 
 .modal .btn-primary {
   background: #9c33ff;
+}
+
+.session-info a {
+  color: white;
+}
+
+.session-info b {
+  color: rgb(197, 133, 226);
+}
+
+.session-info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.sess {
+  background-color: rgba(211, 211, 211, 0.3);
+  border-radius: 15px;
+  padding: 8px;
+  padding-left: 40px;
+  margin-bottom: 10px;
+}
+
+.session-info .scrolly {
+  padding: 15px;
+  padding-top: 0px;
+  overflow-y: auto;
+  height: 100px;
 }
 
 /* feedback */

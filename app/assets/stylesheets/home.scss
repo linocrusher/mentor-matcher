@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Lobster");
 
 /* Background */
 
@@ -44,10 +44,9 @@ body {
 }
 
 .bnr-title {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Lobster", cursive;
   font-weight: 510;
-  text-transform: uppercase;
-  font-size: 10vh;
+  font-size: 13vh;
   letter-spacing: 2px;
 }
 

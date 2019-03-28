@@ -27,69 +27,38 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
     <div class="wrapper">
         <div class="container centered">
             <div class="session-info">
-                <table class="rows-space">
-                <tr>
-                <td><i class="fa fal fa-book-open"></i></td>
-                <td>
-                <li class="label">Subject:</li>
-                <li><%= @group_session.subject %></li>
-                </td>
-                </tr>
+<!-- View Session Details -->
+                    <ul>
+                        <li class="sess"><i class="fa fal fa-book-open"></i><b>Subject:</b> <%= @group_session.subject %></li>    
+                        <li class="sess"><i class="fas fa-clock"></i><b>Schedule:</b> <%= @group_session.schedule.strftime("%m/%d/%Y %I:%M %p") %></li> 
+                        <li class="sess"><i class="fas fa-building"></i><b>Venue:</b> <%= @group_session.venue %></li> 
+                        <li class="sess"><i class="fas fa-lightbulb"></i><b>Topic:</b> <%= @group_session.topic %></li> 
+                        <li class="sess">
+                            <i class="fas fa-user"></i><b>Creator:</b>
+                            <% creator = User.find(@group_session.user_id)%>
+                            <%= link_to creator.firstname + " " + creator.lastname, user_path(@group_session.user_id) %>
+                        </li>
+                        <li class="sess">
+                            <i class="fa far fa-users"></i><b>Members:</b>
+                            <br>
+                            <ul class="scrolly">
+                            <% @names.each do |name| %>
+                                <li style="padding-left:35px">
+                                    <%= link_to name.firstname + " " + name.lastname, user_path(name.id) %>
+                                </li>
+                            <% end %>
+                            </ul>
+                        </li>
+                    </ul>
 
-
-                <tr>
-                <td><i class="fas fa-clock"></i></td>
-                <td>
-                <li class="label">Schedule:</li>
-                <li><%= @group_session.schedule %></li>
-                </td>
-                </tr>
-
-                <tr>
-                <td><i class="fas fa-building"></i></td>
-                <td>
-                <li class="label">Venue:</li>
-                <li><%= @group_session.venue %></li>
-                </td>
-                </tr>
-
-                <tr>
-                <td><i class="fas fa-lightbulb"></i></td>
-                <td>
-                <li class="label">Topic:</li>
-                <li><%= @group_session.topic %></li>
-                </td>
-                </tr>
-
-                <tr>
-                <td><i class="fa far fa-users"></i></td>
-                <td>
-                <li class="label">Members:</li>
-                <% @names.each do |name| %>
-                    <li>
-                    <%= link_to name.firstname + " " + name.lastname, user_path(name.id) %>
-                    </li>
-                <% end %>
-                </td>
-                </tr>
-
-                <tr>
-                <td><i class="fas fa-users"></i></td>
-                <td>
-                <li class="label">Creator:</li>
-                <% creator = User.find(@group_session.user_id)%>
-                <%= link_to creator.firstname + " " + creator.lastname, user_path(@group_session.user_id) %></li>
-                </td>
-                </tr>
-
-                </table>
+<!-- Join/Leave/Delete Session Buttons -->    
                 <%= form_with model: @group_session, local: true do |form| %>
                     <%= form.hidden_field :id, value: @group_session.id %>
                         <% if @members.where(:user_id => @current_user.id).exists? %> <!User in member list>
                           <% if @group_session.user_id != @current_user.id %> <!Owner must not be able to leave the session>
                             <div class="centered">
                             <button type="button" class="join-btn" data-toggle="modal" data-target="#leave">
-                            Leave
+                            Leave Session
                             </button>
                             </div>
                           <% else %>
@@ -100,7 +69,7 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                         <% else %>
                             <div class="centered">
                             <button type="button" class="join-btn" data-toggle="modal" data-target="#join">
-                            Join
+                            Join Session
                             </button>
                             </div>
                         <% end %>
