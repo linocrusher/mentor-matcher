@@ -1,6 +1,10 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+Author: Martina Sophia P. Casiano
+Code History:
+Sophia - 2/6/2019 - Added styles for sign up page
+Sophia - 2/20/2019 - Added style for error messages
+*/
 
 /* Background */
 
@@ -59,7 +63,7 @@ body {
   font-size: 40px;
   font-weight: 100;
   color: #ffffff;
-  align: center;
+  text-align: center;
   margin-top: 10%;
   margin-bottom: 30px;
   font-family: "Nunito", sans-serif;

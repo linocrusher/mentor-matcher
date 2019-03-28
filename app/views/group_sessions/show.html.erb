@@ -2,6 +2,8 @@
 Author: Martina Sophia P. Casiano
 Code History:
 Sophia - 2/6/2019 - Added frontend for view sessions page
+Sophia - 2/20/2019 - Added frontend for join/leave sessions
+Sophia - 3/20/2019 - Added delete session
 -->
 
 <!doctype html>
@@ -57,18 +59,18 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
                         <% if @members.where(:user_id => @current_user.id).exists? %> <!User in member list>
                           <% if @group_session.user_id != @current_user.id %> <!Owner must not be able to leave the session>
                             <div class="centered">
-                            <button type="button" class="join-btn" data-toggle="modal" data-target="#leave">
+                            <button type="button" class="def-btn" data-toggle="modal" data-target="#leave">
                             Leave Session
                             </button>
                             </div>
                           <% else %>
                             <div class="centered">
-                            <%= button_to 'Delete Session', group_session_path(@group_session), class: "join-btn", method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <%= button_to 'Delete Session', group_session_path(@group_session), class: "def-btn", method: :delete, data: { confirm: 'Are you sure?' } %>
                             </div>
                           <% end %>
                         <% else %>
                             <div class="centered">
-                            <button type="button" class="join-btn" data-toggle="modal" data-target="#join">
+                            <button type="button" class="def-btn" data-toggle="modal" data-target="#join">
                             Join Session
                             </button>
                             </div>
