@@ -51,24 +51,28 @@ Sophia - 2/6/2019 - Added frontend for view sessions page
             <div class="view centered">
                 <div class="scrolly">
                     <table class="rows-space">
-                        <% @group_sessions.each do |group_session| %>
-                            <tr id="sessions">
-                                <div>
-                                    <td>
-                                        <li><i class="fa fal fa-book-open"></i>&nbsp<%= group_session.subject %></li>
-                                        <li><i class="fas fa-clock"></i>&nbsp<%= group_session.schedule.strftime("%m/%d/%Y %I:%M %p") %></li>
-                                    </td>
-                                    <td>
-                                        <li><i class="fas fa-building"></i>&nbsp<%= group_session.venue %></li>
-                                        <li><i class="fas fa-lightbulb"></i>&nbsp<%= group_session.topic %></li>
-                                    </td>
-                                </div>
-                                <div>
-                                    <td>
-                                        <%= link_to 'View', group_session_path(group_session), class: "button"%>
-                                    </td>
-                                </div>
-                            </tr>
+                        <% if @group_sessions.any? %>
+                            <% @group_sessions.each do |group_session| %>
+                                <tr id="sessions">
+                                    <div>
+                                        <td>
+                                            <li><i class="fa fal fa-book-open"></i>&nbsp<%= group_session.subject %></li>
+                                            <li><i class="fas fa-clock"></i>&nbsp<%= group_session.schedule.strftime("%m/%d/%Y %I:%M %p") %></li>
+                                        </td>
+                                        <td>
+                                            <li><i class="fas fa-building"></i>&nbsp<%= group_session.venue %></li>
+                                            <li><i class="fas fa-lightbulb"></i>&nbsp<%= group_session.topic %></li>
+                                        </td>
+                                    </div>
+                                    <div>
+                                        <td>
+                                            <%= link_to 'View', group_session_path(group_session), class: "button"%>
+                                        </td>
+                                    </div>
+                                </tr>
+                            <% end %>
+                        <% else %>
+                            <div class="empty"><i class="fa fa-book-open centered" style="font-size: 70px; opacity:0.4; margin-bottom:10px"></i><p>No available sessions</p></div>
                         <% end %>
                     </table>
                 </div>

@@ -2,12 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url("https://fonts.googleapis.com/css?family=Raleway");
-@import url("https://fonts.googleapis.com/css?family=Lobster");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css?family=Boogaloo");
-
+@import url("https://fonts.googleapis.com/css?family=Raleway|Lobster|Open+Sans|Roboto|Boogaloo|Quicksand");
 /* background */
 
 body {
@@ -338,6 +333,13 @@ li {
 .btn-link {
   border-style: none;
   outline: none;
+}
+
+.empty {
+  color: white;
+  opacity: 0.7;
+  margin-top: 50%;
+  font-size: 20px;
 }
 
 /* view sessions scrollbar */
