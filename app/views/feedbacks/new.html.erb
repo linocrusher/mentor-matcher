@@ -1,3 +1,11 @@
+<!--
+This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+Author: Martina Sophia P. Casiano
+Code History:
+Sophia - 3/6/2019 - Added frontend for feedback/report users
+Sophia - 3/29/2019 - Modified frontend for feedback/report users
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "group_sessions" %>
 </head>
@@ -19,38 +26,41 @@
 
 <!--MAIN-->
     <div class="wrapper">
-        <div class="container">
+        <li class="container">
             <div class="title centered">Feedback/Report</div>
-            <div class="feedback centered">
+            <li class="feedback centered">
             <%= form_for @feedback, local: true do |form| %>
 
               <%= form.hidden_field :sender, value: @current_user.id %>
+              <ul>
+                <li class="sess" style="padding: 8px 20px 8px 20px;">
+                  <i class="fas fa-info-circle" style="padding-right: 10px"></i>
+                  <%= form.label :type %>
+                  <%= form.select :t, ['Feedback', 'Report'] %>
+                </li>
 
-              <div>
-                <%= form.label :type %> <br>
-                <%= form.select :t, ['Feedback', 'Report'] %>
-              </div>
+                <li class="sess" style="padding: 8px 20px 8px 20px;">
+                  <i class="fas fa-user" style="padding-right: 10px"></i>
+                  <% if @ru == nil %>
+                    <%= form.label :recipient %>
+                    <%= form.collection_select(:recipient, @r, :id, :username) %>
+                  <% else %>
+                    <%= form.label :recipient %>:
+                    <b><%= @ru.firstname %> <%= @ru.lastname %></b>
+                    <%= form.hidden_field :recipient, value: @ru.id %>
+                  <% end %>
+                </li>
 
-              <div>
-                <% if @ru == nil %>
-                  <%= form.label :recipient %> <br>
-                  <%= form.collection_select(:recipient, @r, :id, :username) %>
-                <% else %>
-                  <%= form.label :recipient %> <br>
-                  <%= @ru.firstname %> <%= @ru.lastname %>
-                  <%= form.hidden_field :recipient, value: @ru.id %>
-                <% end %>
-              </div>
+                <li class="sess" style="padding: 8px 20px 8px 20px;">
+                  <i class="fas fa-pen" style="padding-right: 10px"></i>
+                  <%= form.label :content %><br>
+                  <%= form.text_area :content, class: 'text-area', placeholder: 'Write something here' %>
+                </li>
 
-              <div>
-                <%= form.label :content %><br>
-                <%= form.text_area :content, class: 'text-area' %>
-              </div>
-
-              <div>
-
-                <%= form.submit('Submit', class: "save-button") %>
-              </div>
+                <div>
+                  <%= form.submit('Submit', class: "def-btn") %>
+                </div>
+              </ul>
             <% end %>
             </div>
         </div>

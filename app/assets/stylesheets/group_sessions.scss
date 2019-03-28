@@ -1,8 +1,15 @@
-// Place all the styles related to the group_sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+Author: Martina Sophia P. Casiano
+Code History:
+Sophia - 2/6/2019 - Added background, header, sidebar, dropdown, view sessions
+Sophia - 2/20/2019 - Added styles for error messages, modal, buttons, table
+Sophia - 3/6/2019 - Added styles for rating/feedback/report users and profile page
+Sophia - 3/20/2019 - Added styles for managing user accounts
+*/
 
 @import url("https://fonts.googleapis.com/css?family=Raleway|Lobster|Open+Sans|Roboto|Boogaloo|Quicksand");
+
 /* background */
 
 body {
@@ -550,7 +557,7 @@ li {
   width: 50px;
 }
 
-.session-info .join-btn {
+.def-btn {
   font-size: 21px;
   background-image: linear-gradient(
     to right,
@@ -562,9 +569,10 @@ li {
   height: 50px;
   text-align: center;
   color: #ffffff;
-  outline: none;
   width: 100%;
   letter-spacing: 1.5px;
+  border-style: none;
+  outline: none;
 }
 
 .modal {
@@ -583,15 +591,15 @@ li {
   color: rgb(197, 133, 226);
 }
 
-.session-info ul {
+ul {
   list-style-type: none;
   padding-left: 0;
 }
+
 .sess {
   background-color: rgba(211, 211, 211, 0.3);
   border-radius: 15px;
-  padding: 8px;
-  padding-left: 40px;
+  padding: 8px 40px 8px 40px;
   margin-bottom: 10px;
 }
 
@@ -606,34 +614,45 @@ li {
 
 .feedback {
   color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 .feedback div {
   padding-bottom: 20px;
 }
-
+.feedback b {
+  padding-left: 5px;
+}
 .feedback select {
-  background-color: rgb(218, 209, 209);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid #fff;
   border-radius: 5px;
-  width: 150px;
+  width: 215px;
   height: 30px;
   outline: none;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-left: 30px;
+  padding-left: 15px;
 }
 
 .text-area {
-  height: 80px;
+  height: 150px;
   width: 320px;
   border-radius: 10px;
   outline: none;
-  background-color: rgb(218, 209, 209);
+  background-color: rgba(255, 255, 255, 0.9);
   margin-bottom: 10px;
+  padding: 10px;
+}
+
+.text-area::placeholder {
+  color: rgb(0, 0, 0);
 }
 
 .feedback label {
   color: white;
   font-size: 17px;
-  font-family: "Open Sans", sans-serif;
   margin-bottom: 5px;
 }
 
