@@ -38,7 +38,7 @@ class GroupSessionsController < ApplicationController
     if @view == "user"
       @group_sessions = GroupSession.where(:user_id => @current_user.id)
     else
-      @group_sessions = GroupSession.all
+      @group_sessions = GroupSession.where("schedule > ?", DateTime.now)
     end
 	end
 

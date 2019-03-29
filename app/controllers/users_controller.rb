@@ -51,26 +51,30 @@ class UsersController < ApplicationController
           @user.update( :expires => (DateTime.now + 5.months) )
         end
     else
-      if params[:id] ==  "update_status"
+      if params[:id] ==  "update_status" #Admin deletion
         @user = User.where(:username => params[:user][:username])
-        puts params[:user][:username]
-      else
+        @links = Link.where(:user_id => @user.ids)
+        @links.destroy_all
+        @sent = Feedback.where(:sender => @user.ids)
+        @sent.destroy_all
+        @received = Feedback.where(:recipient => @user.ids)
+        @received.destroy_all
+        @user.destroy_all
+        redirect_to users_auth_path
+      else #Self deletion
         @user = User.find(params[:id])
-      end
-      @links = Link.where(:user_id => @user.ids)
-      @links.destroy_all
-      @sent = Feedback.where(:sender => @user.ids)
-      @sent.destroy_all
-      @received = Feedback.where(:recipient => @user.ids)
-      @received.destroy_all
-      @user.destroy_all
-      /Logout if own account/
-      if(@current_user.id == params[:id])
+        @links = Link.where(:user_id => @user.id)
+        @links.destroy_all
+        @sent = Feedback.where(:sender => @user.id)
+        @sent.destroy_all
+        @received = Feedback.where(:recipient => @user.id)
+        @received.destroy_all
+        @user.destroy
+        /Logout/
         session[:user_id] = nil
         redirect_to home_index_path
       end
     end
-    redirect_to users_auth_path
   end
 
   def auth
