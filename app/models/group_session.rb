@@ -7,7 +7,8 @@ class GroupSession < ApplicationRecord
 	validates :schedule, presence: true
 	validates :venue, presence: true
 	validates :topic, presence: true
-	validates :schedule, :uniqueness => {:scope => :venue} #Date, Time, and Venue should not match any existing sessions
+	validates :schedule, :uniqueness => {:scope => :user_id} #Schedule should not match any existing sessions
 	has_many :links
 	has_many :users, through: :links
+
 end

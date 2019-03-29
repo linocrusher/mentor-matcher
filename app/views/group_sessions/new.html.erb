@@ -62,7 +62,7 @@ Sophia - 3/20/2019 - Modify the ui for datetime input
                             <span class="centered circle">
                             <div class="column left"><i class="fas fa-clock"></i></div>
                             <div class="column right" id="txt"><h id="sched-placeholder">Schedule</h></div>
-                            <div class="myDIV default-sched column right" id="input-sched"><%= form.datetime_select :schedule, required: true, autofocus: true %></div>
+                            <div class="myDIV default-sched column right" id="input-sched"><%= form.datetime_select :schedule, required: true, autofocus: true, ampm: true, start_year: DateTime.now.year, default: DateTime.now %></div>
                             </span>
                         </div>
 

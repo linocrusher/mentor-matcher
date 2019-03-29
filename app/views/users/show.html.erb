@@ -80,20 +80,19 @@
                                     <% end %>
                                 </div>
                             <% end %>
+
+                            <%= form_with url: new_feedback_path, local: true do |form| %>
+                                <%= hidden_field_tag :id, @user.id %>
+                                <%= form.submit 'Provide Feedback/Report User', class: 'link-btn' %>
+                            <% end %>
                         <% end %>
 
-                        <!%= link_to 'Provide Feedback/Report User', new_feedback_path, class: 'drp-btn' %>
-
-                        <%= form_with url: new_feedback_path, local: true do |form| %>
-                            <%= hidden_field_tag :id, @user.id %>
-                            <%= form.submit 'Provide Feedback/Report User', class: 'link-btn' %>
-                        <% end %>
                     </div>
                     <br>
 
                     <div class="column r comment-sect scrolly">
                         <p>Comments:</p>
-                        <% if @f.any? %>        
+                        <% if @f.any? %>
                             <% @f.each do |f| %>
                             <strong><i class="far fa-user"></i> <%= User.find(f.sender).username %>:</strong>
                             <p style="opacity:0.6"><%= f.content %></p>
