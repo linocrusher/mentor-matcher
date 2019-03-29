@@ -10,13 +10,13 @@ Eizer - 2/6/2019 - Added basic frontend for view reports page
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "group_sessions" %>
 </head>
 
 <body>
-    
+
     <header>
       <%= render 'group_sessions/sidebar' %>
     </header>
@@ -31,13 +31,19 @@ Eizer - 2/6/2019 - Added basic frontend for view reports page
                     <% @report.each do |r| %>
                         <tr id="sessions">
                         <div>
-                            <td>	
+                            <td>
                                 <li>Sender: <%= User.find(r.sender).username %></li>
                                 <li>Recipient: <%= User.find(r.recipient).username %></li>
                             </td>
                             <td>
                                 <li>Content: <%= r.content %></li>
-                                <li>Placeholder for Suspend/Delete/Ignore</li>
+                                <li>
+                                  <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+                                    <%= form.hidden_field :username, value: User.find(r.recipient).username %>
+                                    <%= form.submit value: "Unauthenticate", class: "button" %>
+                                  <% end %>
+                                    <%= button_to 'Delete Report', feedback_path(r.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+                                </li>
                             </td>
                         </div>
                         </tr>

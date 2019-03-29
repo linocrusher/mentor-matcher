@@ -14,7 +14,8 @@ class GroupSessionsController < ApplicationController
 
 	def create
   	  @group_session = GroupSession.new(group_session_params)
-      if (@group_session.schedule.utc - 8.hours) < DateTime.now.utc
+      @user_gs = GroupSession.where(:user_id => @current_user.id)
+      if (@group_session.schedule.utc - 9.hours) < DateTime.now.utc
   			@group_session.errors.add(:schedule, " must be set at least 1 hour after the current time")
         render 'new'
   		elsif @group_session.save

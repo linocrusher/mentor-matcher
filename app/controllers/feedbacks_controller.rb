@@ -27,7 +27,10 @@ class FeedbacksController < ApplicationController
 	end
 
 	def destroy
+		@report = Feedback.find(params[:id])
+    @report.destroy
 
+    redirect_to feedbacks_path
 	end
 
 	def index
