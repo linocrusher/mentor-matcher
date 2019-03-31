@@ -55,6 +55,8 @@ class UsersController < ApplicationController
         @user = User.where(:username => params[:user][:username])
         @links = Link.where(:user_id => @user.ids)
         @links.destroy_all
+        @group_sessions = GroupSession.where(:user_id => @user.ids)
+        @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.ids)
         @sent.destroy_all
         @received = Feedback.where(:recipient => @user.ids)
@@ -65,6 +67,8 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @links = Link.where(:user_id => @user.id)
         @links.destroy_all
+        @group_sessions = GroupSession.where(:user_id => @user.id)
+        @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.id)
         @sent.destroy_all
         @received = Feedback.where(:recipient => @user.id)
@@ -86,6 +90,11 @@ class UsersController < ApplicationController
     @user = User.where( :username => user_params[:username] )
     if params[:commit] == "Unauthenticate"
       @user.update( :status => nil )
+      /Destroy all group sessions and memberships/
+      @links = Link.where(:user_id => @user.ids)
+      @links.destroy_all
+      @group_sessions = GroupSession.where(:user_id => @user.ids)
+      @group_sessions.destroy_all
     else
       @user.update( :status => "regular" )
       @user.update( :expires => (DateTime.now + 5.months) )
