@@ -15,7 +15,7 @@ Sophia - 2/20/2019 - Added error messages
 		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-		
+
 		<%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "lsessions" %>
 </head>
@@ -31,7 +31,7 @@ Sophia - 2/20/2019 - Added error messages
 						<a class="navbar-brand" href="#">logo/smth</span></a>
 					</div>
 				</div>
-		</nav> 
+		</nav>
 		-->
 
 		<!--MAIN CONTENT-->
@@ -43,32 +43,37 @@ Sophia - 2/20/2019 - Added error messages
 						Mentor Matcher
 						</div>
 
-								
+
 								<% if $b == 1 %>
 									<div class="err-msg">
 										<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp User account still pending authentication
 									</div>
-									
+
 								<% elsif $b == 2 %>
 									<div class="err-msg">
 									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp User account has expired and is pending renewal
 									</div>
-									
+
 								<% elsif $b == 3 %>
 									<div class="err-msg">
 									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp Invalid Password
 									</div>
-									
+
 								<% elsif $b == 4 %>
 									<div class="err-msg">
 									<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp No such user exists<br>
 									</div>
-									
+
+                <% elsif $b == 5 %>
+  								<div class="err-msg">
+  								<i class="fa far fa-times"></i>&nbsp&nbsp&nbsp&nbsp Your account has been banned. Please contact the admin for more information.<br>
+  								</div>
+
 								<% end %>
 								</div>
 
-								<%= form_tag(:action => 'login_attempt') do %>   
-										<div class="login"> 
+								<%= form_tag(:action => 'login_attempt') do %>
+										<div class="login">
 												<div class="centered input-field">
 														<span class="icon fa fa-user">
 														<%= text_field_tag :username, nil, type: 'username', class: 'input', placeholder: 'Username', required: true, autofocus: true %>
@@ -86,7 +91,7 @@ Sophia - 2/20/2019 - Added error messages
 												</div>
 										</div>
 								<% end %>
-		
+
 								<div class="centered">
 								<br><br><br>
 								<p class="note">Don't have an account? <a href="/users/new" style="font-weight:bold">Sign Up</a>.</p>

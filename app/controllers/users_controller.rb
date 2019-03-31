@@ -4,7 +4,8 @@ Code History:
 Eizer Jan 30, 2019  Added user controller
 Eizer Feb 5, 2019  Added methods under controller. Also added view constraints
 Eizer Mar 6, 2019, Added update method for vote calculation
-Eizer Mar 15, 2019, Deleting accounts also delete feedbacks/
+Eizer Mar 15, 2019, Deleting accounts also delete feedbacks
+Eizer Mar 31, 2019, Clarified attributes for banned users/
 
 class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
@@ -44,9 +45,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if params[:commit] == "Authenticate" or params[:commit] == "Renew"
+    if params[:commit] == "Authenticate" or params[:commit] == "Renew" or params[:commit] == "Unban"
         @user = User.where( :username => user_params[:username] )
         @user.update( :status => "regular" )
+        /User has expired. Adds 5 months to the new lifespan starting the current day/
         if @user[0][:expires] == nil or @user[0][:expires] < DateTime.now
           @user.update( :expires => (DateTime.now + 5.months) )
         end
@@ -83,13 +85,13 @@ class UsersController < ApplicationController
 
   def auth
     @unauthlist = User.where( :status => nil )
-    @authlist = User.where.not( :status => nil, :id => @current_user.id)
+    @authlist = User.where.not( :status => nil, :status => "banned", :id => @current_user.id)
   end
 
   def update_status
     @user = User.where( :username => user_params[:username] )
-    if params[:commit] == "Unauthenticate"
-      @user.update( :status => nil )
+    if params[:commit] == "Ban"
+      @user.update( :status => "banned" )
       /Destroy all group sessions and memberships/
       @links = Link.where(:user_id => @user.ids)
       @links.destroy_all

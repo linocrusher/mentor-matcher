@@ -3,7 +3,8 @@ Author: Eizer Relayson
 Code History:
 Eizer Jan 30, 2019  Added sessions controller
 Eizer Feb 3, 2019  Added methods. Also added view constraints
-Eizer Feb 18, 2019 Added error prompts/
+Eizer Feb 18, 2019 Added error prompts
+Eizer Mar 31, 2019  Fixed banned user handling/
 
 class SessionsController < ApplicationController
   before_action :authenticate_user, :only => [:home, :logout] #Should be removed once the Session Page is created
@@ -15,9 +16,12 @@ class SessionsController < ApplicationController
 
   def login_attempt
   	authorized_user = User.authenticate(params[:username],params[:password])
-  	if authorized_user
+  	if authorized_user and authorized_user.status != "banned"
   		session[:user_id] = authorized_user.id
   		redirect_to group_sessions_path #Should redirect to Session Page
+    elsif authorized_user and authorized_user.status == "banned"
+      $b = 5 #User banned
+      render "login"
   	else
   		#Still missing error prompt
 
@@ -38,7 +42,8 @@ class SessionsController < ApplicationController
         $b = 4 #Invalid username
       end
 
-  		render "login"	
+  		render "login"
+      puts $b
   	end
   end
 

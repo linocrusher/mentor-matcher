@@ -4,7 +4,8 @@ Code History:
 Eizer Jan 30, 2019  Added group sessions controller
 Eizer Feb 3, 2019  Added methods and view constraint
 Eizer Mar 15, 2019  Code Refactoring
-Eizer Mar 18, 2019  Added delete method/
+Eizer Mar 18, 2019  Added delete method
+Eizer Mar 31, 2019  Added minimum time gap between group sessions/
 
 class GroupSessionsController < ApplicationController
   before_action :authenticate_user, :only => [:new, :create, :index, :update, :show, :destroy] #Can only be accessed by logged in users
@@ -15,7 +16,7 @@ class GroupSessionsController < ApplicationController
 	def create
   	  @group_session = GroupSession.new(group_session_params)
       @user_gs = GroupSession.where(:user_id => @current_user.id)
-      if (@group_session.schedule.utc - 9.hours) < DateTime.now.utc
+      if (@group_session.schedule.utc - 9.hours) <= DateTime.now.utc
   			@group_session.errors.add(:schedule, " must be set at least 1 hour after the current time")
         render 'new'
   		elsif @group_session.save
