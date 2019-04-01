@@ -20,7 +20,6 @@ class GroupSessionsController < ApplicationController
   			@group_session.errors.add(:schedule, " must be set at least 1 hour after the current time")
         render 'new'
       elsif @user_gs.count > 0
-        puts "TAMA BOI"
         @group_session.errors.add(:schedule, " must be set at least 1 hour before or after any other created session")
         render 'new'
   		elsif @group_session.save
