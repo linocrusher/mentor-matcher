@@ -15,9 +15,13 @@ class GroupSessionsController < ApplicationController
 
 	def create
   	  @group_session = GroupSession.new(group_session_params)
-      @user_gs = GroupSession.where(:user_id => @current_user.id)
+      @user_gs = GroupSession.where(:user_id => @current_user.id).where("schedule >= ?", (@group_session.schedule - 1.hours)).where("schedule <= ?", (@group_session.schedule + 1.hours))
       if (@group_session.schedule.utc - 9.hours) <= DateTime.now.utc
   			@group_session.errors.add(:schedule, " must be set at least 1 hour after the current time")
+        render 'new'
+      elsif @user_gs.count > 0
+        puts "TAMA BOI"
+        @group_session.errors.add(:schedule, " must be set at least 1 hour before or after any other created session")
         render 'new'
   		elsif @group_session.save
         @link = Link.new(:user_id => @current_user.id, :group_session_id => @group_session.id)
