@@ -74,7 +74,7 @@ Sophia - 3/20/2019 - Added frontend for delete unauthenticated users and tab nav
             <div id="regular" class="tabcontent">
                 <div class="view centered">
                     <table class="rows-space">
-                        <% @authlist.each do |user| %>
+                        <% User.where.not( :status => nil, :status => "banned", :id => @current_user.id).each do |user| %>
                             <tr id="users" >
                                 <td>
                                     <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>

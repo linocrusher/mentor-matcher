@@ -5,7 +5,8 @@ Eizer Jan 30, 2019  Added user controller
 Eizer Feb 5, 2019  Added methods under controller. Also added view constraints
 Eizer Mar 6, 2019, Added update method for vote calculation
 Eizer Mar 15, 2019, Deleting accounts also delete feedbacks
-Eizer Mar 31, 2019, Clarified attributes for banned users/
+Eizer Mar 31, 2019, Clarified attributes for banned users
+Eizer Apr 2, 2019   Fixed view issue/
 
 class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create] #Prevents access to the Sign Up Pages if user is already logged in.
@@ -85,7 +86,6 @@ class UsersController < ApplicationController
 
   def auth
     @unauthlist = User.where( :status => nil )
-    @authlist = User.where.not( :status => nil, :status => "banned", :id => @current_user.id)
   end
 
   def update_status
