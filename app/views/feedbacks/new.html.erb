@@ -26,41 +26,47 @@ Sophia - 3/29/2019 - Modified frontend for feedback/report users
 
 <!--MAIN-->
     <div class="wrapper">
-        <li class="container">
+        <div class="container">
             <div class="title centered">Feedback/Report</div>
-            <li class="feedback centered">
+            <div class="feedback centered">
             <%= form_for @feedback, local: true do |form| %>
 
               <%= form.hidden_field :sender, value: @current_user.id %>
-              <ul>
-                <li class="sess" style="padding: 8px 20px 8px 20px;">
-                  <i class="fas fa-info-circle" style="padding-right: 10px"></i>
+              
+                <section class="sess" style="width:48vw;display:inline-block;">
+                  <div style="float:left;padding: 8px 20px 8px 0px;">
+                  <i class="fas fa-info-circle"></i>
                   <%= form.label :type %>
                   <%= form.select :t, ['Feedback', 'Report'] %>
-                </li>
+                  </div>
+                  
+                  <div style="float:right;padding: 8px 0px 8px 20px;">
+                    <i class="fas fa-user"></i>
+                    <% if @ru == nil %>
+                      <%= form.label :recipient %>:&nbsp&nbsp&nbsp
+                      <%= form.collection_select(:recipient, @r, :id, :username) %>
+                    <% else %>
+                      <%= form.label :recipient %>:&nbsp&nbsp&nbsp
+                      <%= @ru.firstname %> <%= @ru.lastname %>
+                      <%= form.hidden_field :recipient, value: @ru.id %>
+                    <% end %>
+                  </div>
+                </section>
 
-                <li class="sess" style="padding: 8px 20px 8px 20px;">
-                  <i class="fas fa-user" style="padding-right: 10px"></i>
-                  <% if @ru == nil %>
-                    <%= form.label :recipient %>
-                    <%= form.collection_select(:recipient, @r, :id, :username) %>
-                  <% else %>
-                    <%= form.label :recipient %>:
-                    <b><%= @ru.firstname %> <%= @ru.lastname %></b>
-                    <%= form.hidden_field :recipient, value: @ru.id %>
-                  <% end %>
-                </li>
+                
 
-                <li class="sess" style="padding: 8px 20px 8px 20px;">
-                  <i class="fas fa-pen" style="padding-right: 10px"></i>
+                <section class="sess" style="width:48vw;">
+                  <div style="padding: 8px 0px 8px 0px;">
+                  <i class="fas fa-pen"></i>
                   <%= form.label :content %><br>
                   <%= form.text_area :content, class: 'text-area', placeholder: 'Write something here' %>
-                </li>
-
-                <div>
+                  </div>
+                </section>
+                
+                <div style="margin-top:20px;">
                   <%= form.submit('Submit', class: "def-btn") %>
                 </div>
-              </ul>
+              
             <% end %>
             </div>
         </div>

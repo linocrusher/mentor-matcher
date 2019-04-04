@@ -81,7 +81,7 @@ Sophia - 4/4/2019 - Modified user profile page
                                         <%= hidden_field_tag :value, 1 %> <!-- Pass the resource id to r_id -->
                                         <%= form.submit 'Upvote', class: 'btn btn-sm btn-outline-secondary' %>
                                     <% end %>
-
+                                    &nbsp&nbsp
                                     <%= form_with model: @user, local: true do |form| %>
                                         <%= hidden_field_tag :id, @user.id %>
                                         <%= hidden_field_tag :value, -1 %> <!-- Pass the resource id to r_id -->

@@ -2,6 +2,7 @@
 Author: Eizer G. Relayson
 Code History:
 Eizer - 2/6/2019 - Added basic frontend for view reports page
+Sophia - 4/4/2019 - Modified frontend for view reports page
 -->
 <!doctype html>
 <html lang="en">
@@ -26,29 +27,32 @@ Eizer - 2/6/2019 - Added basic frontend for view reports page
     <div class="wrapper">
         <div class="container">
             <div class="title centered">User Reports</div>
-            <div class="view centered">
-                <table class="rows-space">
+            <div class="scrolly" style="width:70%;margin:auto">
                     <% @report.each do |r| %>
-                        <tr id="sessions">
-                        <div>
-                            <td>
+                        <div class="sess" style="color:white">
+                        <div class="row">
+                            <div class="col-lg-4" style="padding-left:0px">
                                 <li>Sender: <%= User.find(r.sender).username %></li>
                                 <li>Recipient: <%= User.find(r.recipient).username %></li>
-                            </td>
-                            <td>
-                                <li>Content: <%= r.content %></li>
-                                <li>
-                                  <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
-                                    <%= form.hidden_field :username, value: User.find(r.recipient).username %>
-                                    <%= form.submit value: "Unauthenticate", class: "button" %>
-                                  <% end %>
-                                    <%= button_to 'Delete Report', feedback_path(r.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
-                                </li>
-                            </td>
+                            </div>
+                            <div class="col-lg-8" style="padding-right:0px">
+                                <div class="btn-group" style="float:right">
+                                    
+                                    <%= form_with scope: :user, url: users_update_status_path, local: true do |form| %>
+                                        <%= form.hidden_field :username, value: User.find(r.recipient).username %>
+                                        <%= form.submit value: "Unauthenticate", class: "button",style: "font-size:15px" %>
+                                    <% end %>
+                                    &nbsp
+                                    <%= button_to 'Delete Report', feedback_path(r.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "button",style: "font-size:15px" %>
+                                    
+                                </div>
+                            </div>
+                            <div>
+                                <li>Content: <%= r.content %></li>    
+                            </div>
                         </div>
-                        </tr>
+                        </div>
                     <% end %>
-                </table>
             </div>
         </div>
     </div>

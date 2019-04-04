@@ -31,12 +31,12 @@ Sophia - 3/20/2019 - Added delete session
             <div class="session-info">
 <!-- View Session Details -->
                     <ul>
-                        <li class="sess"><i class="fa fal fa-book-open"></i><b>Subject:</b> <%= @group_session.subject %></li>    
-                        <li class="sess"><i class="fas fa-clock"></i><b>Schedule:</b> <%= @group_session.schedule.strftime("%m/%d/%Y %I:%M %p") %></li> 
-                        <li class="sess"><i class="fas fa-building"></i><b>Venue:</b> <%= @group_session.venue %></li> 
-                        <li class="sess"><i class="fas fa-lightbulb"></i><b>Topic:</b> <%= @group_session.topic %></li> 
+                        <li class="sess"><i class="fa fal fa-book-open"></i><b style="padding-right:15px">Subject:</b> <%= @group_session.subject %></li>    
+                        <li class="sess"><i class="fas fa-clock"></i><b style="padding-right:15px">Schedule:</b> <%= @group_session.schedule.strftime("%m/%d/%Y %I:%M %p") %></li> 
+                        <li class="sess"><i class="fas fa-building"></i><b style="padding-right:15px">Venue:</b> <%= @group_session.venue %></li> 
+                        <li class="sess"><i class="fas fa-lightbulb"></i><b style="padding-right:15px">Topic:</b> <%= @group_session.topic %></li> 
                         <li class="sess">
-                            <i class="fas fa-user"></i><b>Creator:</b>
+                            <i class="fas fa-user"></i><b style="padding-right:15px">Creator:</b>
                             <% creator = User.find(@group_session.user_id)%>
                             <%= link_to creator.firstname + " " + creator.lastname, user_path(@group_session.user_id) %>
                         </li>

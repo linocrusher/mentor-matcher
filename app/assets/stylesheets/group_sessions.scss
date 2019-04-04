@@ -6,7 +6,7 @@ Sophia - 2/6/2019 - Added background, header, sidebar, dropdown, view sessions
 Sophia - 2/20/2019 - Added styles for error messages, modal, buttons, table
 Sophia - 3/6/2019 - Added styles for rating/feedback/report users and profile page
 Sophia - 3/20/2019 - Added styles for managing user accounts
-Sophia - 4/4/2019 - Modified frontend for user profile page
+Sophia - 4/4/2019 - Modified frontend for user profile page and view reports page
 */
 
 @import url("https://fonts.googleapis.com/css?family=Raleway|Lobster|Open+Sans|Roboto|Boogaloo|Quicksand");
@@ -549,7 +549,7 @@ li {
 .session-info {
   color: white;
   margin-top: 10%;
-  width: 37%;
+  width: 43%;
 }
 
 .session-info i {
@@ -598,7 +598,7 @@ ul {
 }
 
 .sess {
-  background-color: rgba(211, 211, 211, 0.3);
+  background-color: rgba(211, 211, 211, 0.2);
   border-radius: 15px;
   padding: 8px 40px 8px 40px;
   margin-bottom: 10px;
@@ -618,32 +618,31 @@ ul {
   font-family: "Open Sans", sans-serif;
 }
 
-.feedback div {
-  padding-bottom: 20px;
-}
 .feedback b {
   padding-left: 5px;
 }
 .feedback select {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  color: white;
   border: 1px solid #fff;
   border-radius: 5px;
-  width: 215px;
+  width: 150px;
   height: 30px;
   outline: none;
   letter-spacing: 1px;
   text-align: center;
-  margin-left: 30px;
-  padding-left: 15px;
+  margin-left: 15px;
 }
 
+.feedback select option {
+  color: black;
+}
 .text-area {
   height: 150px;
-  width: 320px;
+  width: 100%;
   border-radius: 10px;
   outline: none;
   background-color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 10px;
   padding: 10px;
 }
 
@@ -679,17 +678,17 @@ ul {
 .profile h1 {
   font-family: "Boogaloo", cursive;
   font-size: 50px;
-  color: #642c85;
+  color: #8d4fb1;
 }
 
 .profile h4 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   opacity: 0.5;
 }
 
 .profile h3 {
   color: #d79cfa;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .comment-sect {
@@ -752,4 +751,10 @@ ul {
 .no-comments {
   opacity: 0.5;
   color: gray;
+}
+
+/* user reports */
+
+.btn-inline {
+  display: inline-block;
 }
