@@ -6,6 +6,7 @@ Sophia - 2/6/2019 - Added background, header, sidebar, dropdown, view sessions
 Sophia - 2/20/2019 - Added styles for error messages, modal, buttons, table
 Sophia - 3/6/2019 - Added styles for rating/feedback/report users and profile page
 Sophia - 3/20/2019 - Added styles for managing user accounts
+Sophia - 4/4/2019 - Modified frontend for user profile page
 */
 
 @import url("https://fonts.googleapis.com/css?family=Raleway|Lobster|Open+Sans|Roboto|Boogaloo|Quicksand");
@@ -663,14 +664,14 @@ ul {
 /* profile */
 
 .profile {
-  background-color: rgb(255, 255, 255);
-  color: black;
+  background-color: rgba(10, 10, 34, 0.4);
+  color: white;
   font-size: 18px;
   text-align: center;
   width: fit-content;
   font-family: "Varela Round", sans-serif;
-  padding: 15px;
-  padding-top: 4vw;
+  padding: 8vh;
+  padding-top: 10vh;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
@@ -681,9 +682,19 @@ ul {
   color: #642c85;
 }
 
+.profile h4 {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.profile h3 {
+  color: #d79cfa;
+  font-size: 3rem;
+}
+
 .comment-sect {
-  background-color: #642c85;
-  color: black;
+  background-color: rgba(10, 10, 34, 0.8);
+  color: white;
   font-size: 18px;
   padding: 30px;
   width: fit-content;
@@ -697,23 +708,21 @@ ul {
 }
 
 .l {
-  margin-top: 15%;
-  width: 35%;
-  height: 400px;
+  margin-top: 11%;
+  width: 50%;
+  height: 74vh;
 }
 
 .r {
-  margin-top: 15%;
+  margin-top: 11%;
   width: 35%;
-  height: 400px;
+  height: 74vh;
   overflow-wrap: break-word;
 }
 
 .profile .btn {
   font-size: 13px;
-  font-weight: bold;
   height: fit-content;
-  color: black;
 }
 
 .link-btn {
@@ -722,14 +731,16 @@ ul {
   outline: none;
   font-size: 0.8em;
   margin-top: 10px;
+  color: white;
 }
 .profile .btn-outline-secondary {
   outline: none;
-  background-color: white;
+  background-color: transparent;
   border-radius: 20px;
-  color: #6f2699;
+  color: white;
   border-color: #642c85;
-  margin-top: 20px;
+  margin-top: 5vh;
+  width: 15vw;
 }
 
 .profile .btn-outline-secondary:hover {

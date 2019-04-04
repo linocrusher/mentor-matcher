@@ -1,3 +1,11 @@
+<!--This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+Author: Martina Sophia P. Casiano
+Code History:
+Sophia - 2/20/2019 - Added frontend for user profile page
+Sophia - 3/20/2019 - Added feedback/report on user profile page
+Sophia - 4/4/2019 - Modified user profile page
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,11 +41,12 @@
 
                 <% else %>
                     <div class="column l profile">
-                        <li><h1><%= @user.firstname %> <%= @user.lastname %></h1></li>
-                        <li><p><%= @user.address %></p></li> <br><br>
-                        <li><h3>Rating: <%= @user.rating %> (<%= @v.count %>)</h3></li>
+                        <h1><%= @user.firstname %> <%= @user.lastname %></h1>
+                        <p style="letter-spacing:2px;font-family: 'Roboto', sans-serif;"><%= @user.address %></p>
+                        <strong style="opacity:0.3;font-size:20px;">Rating:</strong> <h3><%= @user.rating %> (<%= @v.count %>)</h3>
+                        <br>
                         <% if (@current_user.status == "admin" or @current_user.id == @user.id) and @user.status != "admin" %>
-                        <li>Expires at: <%= @user.expires.strftime("%m/%d/%Y %I:%M %p") %></li>
+                            <h4>Expires at: <%= @user.expires.strftime("%m/%d/%Y %I:%M %p") %></h4>
                         <% end %>
 
 
@@ -80,21 +89,22 @@
                                     <% end %>
                                 </div>
                             <% end %>
-
+                            <div style="margin-top: 3%;opacity: 0.7">
                             <%= form_with url: new_feedback_path, local: true do |form| %>
                                 <%= hidden_field_tag :id, @user.id %>
                                 <%= form.submit 'Provide Feedback/Report User', class: 'link-btn' %>
                             <% end %>
+                            </div>
                         <% end %>
 
                     </div>
                     <br>
 
                     <div class="column r comment-sect scrolly">
-                        <p>Comments:</p>
+                        <p style="margin-top:8%">Comments:</p>
                         <% if @f.any? %>
                             <% @f.each do |f| %>
-                            <strong><i class="far fa-user"></i> <%= User.find(f.sender).username %>:</strong>
+                            <strong style="color: #d79cfa;"><i class="far fa-user"></i> <%= User.find(f.sender).username %>:</strong>
                             <p style="opacity:0.6"><%= f.content %></p>
                             <% end %>
                         <% else %>
