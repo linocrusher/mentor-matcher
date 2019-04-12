@@ -61,3 +61,9 @@ gem 'coffee-script-source', '1.8.0'
 
 #For password encryption
 gem 'bcrypt', '3.1.12'
+
+gem 'mysql2'
+
+gem 'yaml_db'
+
+gem 'webpacker'
