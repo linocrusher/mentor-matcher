@@ -30,7 +30,7 @@ class User < ApplicationRecord
 		else
 			return false
 		end
-	end   
+	end
 
 	def match_password(password_input="")
 		password == BCrypt::Engine.hash_secret(password_input, salt)

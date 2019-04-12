@@ -37,7 +37,6 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-    @user.rating = 0
   	if @user.save
   		redirect_to @user #Should redirect to Success Prompt Page / Session create page
   	else
