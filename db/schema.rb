@@ -12,36 +12,36 @@
 
 ActiveRecord::Schema.define(version: 20190318103713) do
 
-  create_table "feedbacks", force: :cascade do |t|
+  create_table "feedbacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "sender"
+    t.integer "recipient"
     t.string "t"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sender"
-    t.integer "recipient"
   end
 
-  create_table "group_sessions", force: :cascade do |t|
+  create_table "group_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "subject"
     t.datetime "schedule"
     t.string "venue"
     t.string "topic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_group_sessions_on_user_id"
   end
 
-  create_table "links", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_session_id"
+  create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "group_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_session_id"], name: "index_links_on_group_session_id"
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "lastname"
     t.string "firstname"
     t.string "mi"
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 20190318103713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expires"
-    t.float "rating"
+    t.float "rating", limit: 24
   end
 
-  create_table "votes", force: :cascade do |t|
+  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "voter"
     t.integer "target"
     t.integer "value"
@@ -64,4 +64,7 @@ ActiveRecord::Schema.define(version: 20190318103713) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "group_sessions", "users"
+  add_foreign_key "links", "group_sessions"
+  add_foreign_key "links", "users"
 end
