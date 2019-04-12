@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20190318103713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expires"
-    t.float "rating", limit: 24
+    t.float "rating", limit: 24, default: 0.0
   end
 
   create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
