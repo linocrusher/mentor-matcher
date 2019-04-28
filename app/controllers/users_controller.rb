@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
+    @user.rating = 0
   	if @user.save
   		redirect_to @user #Should redirect to Success Prompt Page / Session create page
   	else
@@ -58,6 +59,8 @@ class UsersController < ApplicationController
         @links = Link.where(:user_id => @user.ids)
         @links.destroy_all
         @group_sessions = GroupSession.where(:user_id => @user.ids)
+        @links = Link.where(:group_session_id => @group_sessions.ids)
+        @links.destroy_all
         @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.ids)
         @sent.destroy_all
@@ -70,6 +73,8 @@ class UsersController < ApplicationController
         @links = Link.where(:user_id => @user.id)
         @links.destroy_all
         @group_sessions = GroupSession.where(:user_id => @user.id)
+        @links = Link.where(:group_session_id => @group_sessions.ids)
+        @links.destroy_all
         @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.id)
         @sent.destroy_all
@@ -95,6 +100,8 @@ class UsersController < ApplicationController
       @links = Link.where(:user_id => @user.ids)
       @links.destroy_all
       @group_sessions = GroupSession.where(:user_id => @user.ids)
+      @links = Link.where(:group_session_id => @group_sessions.ids)
+      @links.destroy_all
       @group_sessions.destroy_all
     else
       @user.update( :status => "regular" )
@@ -131,6 +138,6 @@ class UsersController < ApplicationController
 
   private
 	def user_params #For strong parameters
-		params.require(:user).permit(:username, :password, :password_confirmation, :lastname, :firstname, :mi, :address, :status, :value)
+		params.require(:user).permit(:username, :password, :lastname, :firstname, :mi, :address, :status, :value)
 	end
 end
