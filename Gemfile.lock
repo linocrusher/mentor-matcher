@@ -96,6 +96,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.10.1-x86-mingw32)
       mini_portile2 (~> 2.4.0)
+    pg (1.1.4-x86-mingw32)
     popper_js (1.14.5)
     public_suffix (3.0.3)
     puma (3.12.0)
@@ -184,6 +185,7 @@ DEPENDENCIES
   coffee-script-source (= 1.8.0)
   jbuilder (~> 2.5)
   jquery-rails
+  pg
   puma (~> 3.7)
   rails (~> 5.1.6, >= 5.1.6.1)
   sass-rails (~> 5.0)
