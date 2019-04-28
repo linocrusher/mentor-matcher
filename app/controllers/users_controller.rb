@@ -59,6 +59,8 @@ class UsersController < ApplicationController
         @links = Link.where(:user_id => @user.ids)
         @links.destroy_all
         @group_sessions = GroupSession.where(:user_id => @user.ids)
+        @links = Link.where(:group_session_id => @group_sessions.ids)
+        @links.destroy_all
         @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.ids)
         @sent.destroy_all
@@ -71,6 +73,8 @@ class UsersController < ApplicationController
         @links = Link.where(:user_id => @user.id)
         @links.destroy_all
         @group_sessions = GroupSession.where(:user_id => @user.id)
+        @links = Link.where(:group_session_id => @group_sessions.ids)
+        @links.destroy_all
         @group_sessions.destroy_all
         @sent = Feedback.where(:sender => @user.id)
         @sent.destroy_all
@@ -96,6 +100,8 @@ class UsersController < ApplicationController
       @links = Link.where(:user_id => @user.ids)
       @links.destroy_all
       @group_sessions = GroupSession.where(:user_id => @user.ids)
+      @links = Link.where(:group_session_id => @group_sessions.ids)
+      @links.destroy_all
       @group_sessions.destroy_all
     else
       @user.update( :status => "regular" )
